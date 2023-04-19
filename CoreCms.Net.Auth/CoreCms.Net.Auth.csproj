@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.11" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoreCms.Net.Configuration\CoreCms.Net.Configuration.csproj" />
+    <ProjectReference Include="..\CoreCms.Net.IRepository\CoreCms.Net.IRepository.csproj" />
+    <ProjectReference Include="..\CoreCms.Net.IServices\CoreCms.Net.IServices.csproj" />
+    <ProjectReference Include="..\CoreCms.Net.Utility\CoreCms.Net.Utility.csproj" />
+  </ItemGroup>
+
+</Project>

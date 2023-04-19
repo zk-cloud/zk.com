@@ -1,0 +1,255 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <SatelliteResourceLanguages>zh-Hans</SatelliteResourceLanguages>
+    <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
+    <UserSecretsId>b93911e3-96d4-453b-aa87-357c154804c2</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>doc.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="App_Data\**" />
+    <Compile Remove="Controllers\WeChat\**" />
+    <Compile Remove="Logs\**" />
+    <Compile Remove="wwwroot\dbFiles\**" />
+    <Compile Remove="wwwroot\files\**" />
+    <Content Remove="App_Data\**" />
+    <Content Remove="Controllers\WeChat\**" />
+    <Content Remove="Logs\**" />
+    <Content Remove="wwwroot\dbFiles\**" />
+    <Content Remove="wwwroot\files\**" />
+    <EmbeddedResource Remove="App_Data\**" />
+    <EmbeddedResource Remove="Controllers\WeChat\**" />
+    <EmbeddedResource Remove="Logs\**" />
+    <EmbeddedResource Remove="wwwroot\dbFiles\**" />
+    <EmbeddedResource Remove="wwwroot\files\**" />
+    <None Remove="App_Data\**" />
+    <None Remove="Controllers\WeChat\**" />
+    <None Remove="Logs\**" />
+    <None Remove="wwwroot\dbFiles\**" />
+    <None Remove="wwwroot\files\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Controllers\WeChat\CoreCmsUserWeChatInfoController.cs" />
+    <Compile Include="Controllers\WeChat\CoreCmsUserWeChatMsgTemplateController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="illegalWord\IllegalKeywords.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
+    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Essensoft.Paylink.Alipay" Version="4.0.6" />
+    <PackageReference Include="Essensoft.Paylink.WeChatPay" Version="4.0.6" />
+    <PackageReference Include="IdentityModel" Version="5.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="3.0.1" />
+    <PackageReference Include="Microsoft.DotNet.PlatformAbstractions" Version="3.1.6" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="NLog" Version="4.7.11" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.14.0" />
+    <PackageReference Include="NPOI" Version="2.4.1" />
+    <PackageReference Include="Qc.YilianyunSdk" Version="1.0.7" />
+    <PackageReference Include="Snowflake.Core" Version="2.0.0" />
+    <PackageReference Include="StackExchange.Redis" Version="2.2.50" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.13.1" />
+    <PackageReference Include="Tencent.QCloud.Cos.Sdk" Version="5.4.24" />
+    <PackageReference Include="ToolGood.Words" Version="3.0.2.8" />
+    <PackageReference Include="Yitter.IdGenerator" Version="1.0.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoreCms.Net.Auth\CoreCms.Net.Auth.csproj" />
+    <ProjectReference Include="..\CoreCms.Net.CodeGenerator\CoreCms.Net.CodeGenerator.csproj" />
+    <ProjectReference Include="..\CoreCms.Net.Configuration\CoreCms.Net.Configuration.csproj" />
+    <ProjectReference Include="..\CoreCms.Net.Core\CoreCms.Net.Core.csproj" />
+    <ProjectReference Include="..\CoreCms.Net.Filter\CoreCms.Net.Filter.csproj" />
+    <ProjectReference Include="..\CoreCms.Net.IRepository\CoreCms.Net.IRepository.csproj" />
+    <ProjectReference Include="..\CoreCms.Net.IServices\CoreCms.Net.IServices.csproj" />
+    <ProjectReference Include="..\CoreCms.Net.Loging\CoreCms.Net.Loging.csproj" />
+    <ProjectReference Include="..\CoreCms.Net.Mapping\CoreCms.Net.Mapping.csproj" />
+    <ProjectReference Include="..\CoreCms.Net.Middlewares\CoreCms.Net.Middlewares.csproj" />
+    <ProjectReference Include="..\CoreCms.Net.Repository\CoreCms.Net.Repository.csproj" />
+    <ProjectReference Include="..\CoreCms.Net.Services\CoreCms.Net.Services.csproj" />
+    <ProjectReference Include="..\CoreCms.Net.Task\CoreCms.Net.Task.csproj" />
+    <ProjectReference Include="..\CoreCms.Net.WeChat.Service\CoreCms.Net.WeChat.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+    <None Include="wwwroot\lib\bootstrap\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\lib\bootstrap\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\lib\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\css\bootstrap.css.map" />
+    <None Include="wwwroot\lib\bootstrap\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.js" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.js.map" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\lib\ckeditor5\sample\img\github.svg" />
+    <None Include="wwwroot\lib\ckeditor5\sample\img\logo.svg" />
+    <None Include="wwwroot\lib\ckeditor5\translations\af.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\ar.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\ast.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\az.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\bg.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\ca.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\cs.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\da.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\de-ch.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\de.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\el.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\en-au.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\en-gb.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\eo.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\es.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\et.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\eu.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\fa.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\fi.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\fr.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\gl.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\gu.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\he.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\hi.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\hr.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\hu.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\id.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\it.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\ja.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\kk.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\km.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\kn.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\ko.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\ku.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\lt.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\lv.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\ms.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\nb.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\ne.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\nl.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\no.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\oc.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\pl.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\pt-br.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\pt.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\ro.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\ru.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\si.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\sk.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\sl.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\sq.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\sr-latn.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\sr.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\sv.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\th.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\tk.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\tr.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\tt.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\ug.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\uk.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\vi.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\zh-cn.js" />
+    <None Include="wwwroot\lib\ckeditor5\translations\zh.js" />
+    <None Include="wwwroot\lib\custom\element\index.js" />
+    <None Include="wwwroot\lib\custom\element\main.js" />
+    <None Include="wwwroot\lib\custom\js\main.js" />
+    <None Include="wwwroot\lib\custom\js\sortable.min.js" />
+    <None Include="wwwroot\lib\custom\js\vue.min.js" />
+    <None Include="wwwroot\lib\custom\js\vuedraggable.min.js" />
+    <None Include="wwwroot\lib\layuiAdmin\config.js" />
+    <None Include="wwwroot\lib\layuiAdmin\controller\breadcrumb.js" />
+    <None Include="wwwroot\lib\layuiAdmin\controller\common.js" />
+    <None Include="wwwroot\lib\layuiAdmin\controller\contextMenu.js" />
+    <None Include="wwwroot\lib\layuiAdmin\controller\contlist.js" />
+    <None Include="wwwroot\lib\layuiAdmin\controller\coredropdown.js" />
+    <None Include="wwwroot\lib\layuiAdmin\controller\Cropper.js" />
+    <None Include="wwwroot\lib\layuiAdmin\controller\iconPicker.js" />
+    <None Include="wwwroot\lib\layuiAdmin\controller\tableX.js" />
+    <None Include="wwwroot\lib\layuiAdmin\controller\treeTable.js" />
+    <None Include="wwwroot\lib\layuiAdmin\controller\xmSelect.js" />
+    <None Include="wwwroot\lib\layuiAdmin\controller\zTree.js" />
+    <None Include="wwwroot\lib\layuiAdmin\index.js" />
+    <None Include="wwwroot\lib\layuiAdmin\lib\admin.js" />
+    <None Include="wwwroot\lib\layuiAdmin\lib\extend\coreHelper.js" />
+    <None Include="wwwroot\lib\layuiAdmin\lib\extend\dltable.js" />
+    <None Include="wwwroot\lib\layuiAdmin\lib\extend\dtree.js" />
+    <None Include="wwwroot\lib\layuiAdmin\lib\extend\echarts.js" />
+    <None Include="wwwroot\lib\layuiAdmin\lib\extend\echartsTheme.js" />
+    <None Include="wwwroot\lib\layuiAdmin\lib\extend\treeGrid.js" />
+    <None Include="wwwroot\lib\layuiAdmin\lib\view.js" />
+    <None Include="wwwroot\lib\layuiAdmin\style\dtree\dtree.js" />
+    <None Include="wwwroot\lib\layuiAdmin\style\dtree\font\dtreefont.svg" />
+    <None Include="wwwroot\lib\jquery\doT.min.js" />
+    <None Include="wwwroot\lib\jquery\jquery-2.1.4.js" />
+    <None Include="wwwroot\lib\jquery\jquery-2.1.4.min.js" />
+    <None Include="wwwroot\lib\jquery\jquery-3.3.1.js" />
+    <None Include="wwwroot\lib\jquery\jquery-3.3.1.min.js" />
+    <None Include="wwwroot\lib\jquery\jquery-3.3.1.min.map" />
+    <None Include="wwwroot\lib\jquery\jquery.fileDownload.js" />
+    <None Include="wwwroot\lib\jquery\jquery.jcarousellite.min.js" />
+    <None Include="wwwroot\lib\jquery\jquery.unobtrusive-ajax.js" />
+    <None Include="wwwroot\lib\jquery\jquery.unobtrusive-ajax.min.js" />
+    <None Include="wwwroot\lib\jquery\jquery.validate-vsdoc.js" />
+    <None Include="wwwroot\lib\jquery\jquery.validate.js" />
+    <None Include="wwwroot\lib\jquery\jquery.validate.min.js" />
+    <None Include="wwwroot\lib\jquery\jquery.validate.unobtrusive.js" />
+    <None Include="wwwroot\lib\jquery\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\lib\jquery\lazyloadv3.js" />
+    <None Include="wwwroot\lib\layuiAdmin\style\res\logo.psd" />
+    <None Include="wwwroot\lib\layuiAdmin\style\res\noImage.psd" />
+    <None Include="wwwroot\lib\layui\font\iconfont.svg" />
+    <None Include="wwwroot\lib\layui\font\iconfont.woff2" />
+    <None Include="wwwroot\lib\lodop\CLodop_Setup_for_Win32NT.exe" />
+    <None Include="wwwroot\lib\lodop\install_lodop32.exe" />
+    <None Include="wwwroot\lib\lodop\install_lodop64.exe" />
+    <None Include="wwwroot\lib\lodop\LodopFuncs.js" />
+    <None Include="wwwroot\static\css\documentEditor.less" />
+    <None Include="wwwroot\static\css\overWrite.less" />
+    <None Include="wwwroot\static\js\common.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\Order\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="doc.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+
+
+
+</Project>
