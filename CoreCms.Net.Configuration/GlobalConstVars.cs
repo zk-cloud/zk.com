@@ -390,7 +390,26 @@
         //订单支付成功后，用户升级处理
         public const string UserUpGrade = "UserUpGradeQueue";
 
+        public const string UpdateWare = "UpdateWare";
+        public const string UpdateWareDelay = "UpdateWareDelay";
+        #region 延龙汽车
 
+        public const string SocketVehicleParameterUp = "SocketVehicleParameterUp";
+        public const string GPSInfoUp = "GPSInfoUp";
+
+        public const string TCPSocketVehicleParameterUp = "TCPSocketVehicleParameterUp";
+
+        //国标GBT32960标准
+        public const string TCPSocketGBT32960ParameterUp = "TCPSocketGBT32960ParameterUp";
+        //批量处理
+        public const string TCPSocketGBT32960ParameterBatchUp = "TCPSocketGBT32960ParameterBatchUp";
+
+        public const string TCPSocketGBT32960Login = "TCPSocketGBT32960Login";
+        public const string TCPSocketGBT32960Logout = "TCPSocketGBT32960Logout";
+        public const string TCPSocketLoss = "TCPSocketLoss";
+        public const string TCPGPSInfoUp = "TCPGPSInfoUp";
+
+        #endregion
 
     }
 

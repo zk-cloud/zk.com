@@ -12,6 +12,7 @@
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +20,18 @@ namespace CoreCms.Net.Utility.Hub
 {
     public class ChatHub : Hub<IChatClient>
     {
+        //继承IUserIdProvider用于告诉SignalR连接用谁来绑定用户id
+        public class ChatHubGetUserId : IUserIdProvider
+        {
+            string IUserIdProvider.GetUserId(HubConnectionContext connection)
+            {
+                //获取当前登录用户id
+                //string userid = connection.User.Identity.Name; 
+                string userid = connection.User.FindFirst(p => p.Type == JwtRegisteredClaimNames.Jti).Value;
+                return userid;
+            }
+        }
+
         /// <summary>
         /// 向指定群组发送信息
         /// </summary>

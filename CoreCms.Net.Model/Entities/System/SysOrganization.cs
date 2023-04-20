@@ -31,14 +31,14 @@ namespace CoreCms.Net.Model.Entities
         [Display(Name = "机构id")]
         [SugarColumn(ColumnDescription = "机构id", IsPrimaryKey = true, IsIdentity = true)]
         [Required(ErrorMessage = "请输入{0}")]
-        public System.Int32 id { get; set; }
+        public System.String id { get; set; }
         /// <summary>
         /// 上级id,0是顶级
         /// </summary>
         [Display(Name = "上级id,0是顶级")]
         [SugarColumn(ColumnDescription = "上级id,0是顶级")]
         [Required(ErrorMessage = "请输入{0}")]
-        public System.Int32 parentId { get; set; }
+        public System.String parentId { get; set; }
         /// <summary>
         /// 机构名称
         /// </summary>
@@ -65,7 +65,19 @@ namespace CoreCms.Net.Model.Entities
         /// </summary>
         [Display(Name = "负责人id")]
         [SugarColumn(ColumnDescription = "负责人id", IsNullable = true)]
-        public System.Int32? leaderId { get; set; }
+        public System.String leaderId { get; set; }
+        /// <summary>
+        /// 负责人名字
+        /// </summary>
+        [Display(Name = "负责人名字")]
+        [SugarColumn(ColumnDescription = "负责人名字", IsNullable = true)]
+        public System.String leaderName { get; set; }
+        /// <summary>
+        /// 负责人电话
+        /// </summary>
+        [Display(Name = "负责人电话")]
+        [SugarColumn(ColumnDescription = "负责人电话", IsNullable = true)]
+        public System.String leaderPhone { get; set; }
         /// <summary>
         /// 排序号
         /// </summary>

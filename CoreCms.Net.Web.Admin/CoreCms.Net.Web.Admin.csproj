@@ -54,7 +54,7 @@
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.0" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Essensoft.Paylink.Alipay" Version="4.0.6" />
     <PackageReference Include="Essensoft.Paylink.WeChatPay" Version="4.0.6" />
     <PackageReference Include="IdentityModel" Version="5.1.1" />

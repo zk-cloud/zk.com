@@ -198,12 +198,12 @@ namespace CoreCms.Net.Web.Admin.Controllers
             {
                 //where = where.And(p => p.organizationId == organizationId);
                 var o = await _sysOrganizationServices.QueryAsync();
-                var ids = new List<int>();
-                SysOrganizationHelper.GetOrganizeChildIds(o, organizationId, ref ids);
+                var ids = new List<string>();
+                SysOrganizationHelper.GetOrganizeChildIds(o, organizationId.ToString(), ref ids);
                 if (ids.Any())
                 {
                     jm.otherData = ids;
-                    where = where.And(p => ids.Contains((int)p.organizationId));
+                    where = where.And(p => ids.Contains(p.organizationId.ToString()));
                 }
             }
 

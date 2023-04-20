@@ -30,7 +30,7 @@ namespace CoreCms.Net.Utility.Helper
         /// <param name="id"></param>
         /// <param name="treeNodes"></param>
         /// <returns></returns>
-        public static void GetOrganizeChildIds(List<SysOrganization> list, int id, ref List<int> treeNodes)
+        public static void GetOrganizeChildIds(List<SysOrganization> list, string id, ref List<string> treeNodes)
         {
             treeNodes.Add(id);
             if (list == null) return;

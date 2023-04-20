@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29020.237
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9.App", "9.App", "{9C52D39C-A85B-4D5E-B29C-724D6566AB04}"
 EndProject
@@ -58,6 +58,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.WeChat", "5.WeChat", "{FD17E974-7FED-49C6-B9C9-90C8AE4849B7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreCms.Net.WeChat.Service", "CoreCms.Net.WeChat.Service\CoreCms.Net.WeChat.Service.csproj", "{7CB698AD-DECF-43B9-A01A-E5E1E5738BAA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreCms.Net.TCPSocket", "CoreCms.Net.TCPSocket\CoreCms.Net.TCPSocket.csproj", "{35C7E214-C8D4-4493-922F-EB912E680C6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -153,6 +155,10 @@ Global
 		{7CB698AD-DECF-43B9-A01A-E5E1E5738BAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CB698AD-DECF-43B9-A01A-E5E1E5738BAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CB698AD-DECF-43B9-A01A-E5E1E5738BAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35C7E214-C8D4-4493-922F-EB912E680C6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35C7E214-C8D4-4493-922F-EB912E680C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35C7E214-C8D4-4493-922F-EB912E680C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35C7E214-C8D4-4493-922F-EB912E680C6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -180,6 +186,7 @@ Global
 		{C9E6388D-A70F-48BF-8935-8E571BD3DF6B} = {9C52D39C-A85B-4D5E-B29C-724D6566AB04}
 		{927E68B4-92D1-4F66-B137-87804055DE93} = {B3F41F4C-3681-48F3-9BE3-809763AC1937}
 		{7CB698AD-DECF-43B9-A01A-E5E1E5738BAA} = {FD17E974-7FED-49C6-B9C9-90C8AE4849B7}
+		{35C7E214-C8D4-4493-922F-EB912E680C6F} = {9C52D39C-A85B-4D5E-B29C-724D6566AB04}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A325D634-06E7-4F4E-BA15-AB3E14622FF1}

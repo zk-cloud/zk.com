@@ -160,5 +160,20 @@ namespace CoreCms.Net.Configuration
 
         #endregion
 
+        #region TCP服务器设置
+        public static readonly int TCPServicePort = AppSettingsHelper.GetContent("TCPService", "Port").ObjToInt();
+        public static readonly int TCPServiceMultithreadNum = AppSettingsHelper.GetContent("TCPService", "MultithreadNum").ObjToInt();
+        public static readonly int TCPServiceLossTime = AppSettingsHelper.GetContent("TCPService", "LossTime").ObjToInt();
+        public static readonly string SignalRLine = AppSettingsHelper.GetContent("TCPService", "SignalRLine");
+        #endregion
+
+        #region 百度地图设置
+        public static readonly string BaiduMapAPIAK = AppSettingsHelper.GetContent("BaiduMap", "BaiduMapAPIAK");
+        #endregion
+
+        #region hangfire配置
+        //job过期时间
+        public static readonly int JobExpirationTimeout = AppSettingsHelper.GetContent("HangFire", "JobExpirationTimeout").ObjToInt();
+        #endregion
     }
 }
