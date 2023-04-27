@@ -1,18 +1,15 @@
-﻿using CoreCms.Net.Caching;
-using CoreCms.Net.Caching.AutoMate.RedisCache;
+﻿using CoreCms.Net.Caching.AutoMate.RedisCache;
 using CoreCms.Net.Configuration;
-using CoreCms.Net.Core;
 using CoreCms.Net.Utility.YLQCHelper;
 using DotNetty.Buffers;
-using DotNetty.Common.Concurrency;
 using DotNetty.Handlers.Timeout;
 using DotNetty.Transport.Bootstrapping;
 using DotNetty.Transport.Channels;
 using DotNetty.Transport.Channels.Groups;
 using DotNetty.Transport.Channels.Sockets;
+using Hangfire;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,12 +20,12 @@ namespace CoreCms.Net.Core
     {
 
         private readonly IServiceProvider serviceProvider;
-        private readonly Caching.IRedisOperationRepository cache;
+        private readonly IRedisOperationRepository cache;
         private IEventLoopGroup bossGroup;
         private IEventLoopGroup workerGroup;
         private IByteBufferAllocator serverBufferAllocator;
 
-        public TcpServerHost(IServiceProvider serviceProvider, Caching.IRedisOperationRepository cache)
+        public TcpServerHost(IServiceProvider serviceProvider, IRedisOperationRepository cache)
         {
             this.cache = cache;
             this.serviceProvider = serviceProvider;
@@ -68,7 +65,6 @@ namespace CoreCms.Net.Core
                 IChannel boundChannel = bootstrap.BindAsync(AppSettingsConstVars.TCPServicePort).Result;
                 //Hangfire
                 //HangfireDispose.TCPHangfireService();
-
                 //signalR client
                 //HubConnection connection = new HubConnectionBuilder()
                 //.WithUrl(AppSettingsConstVars.SignalRLine)//连接signalr服务端接线器
@@ -94,20 +90,24 @@ namespace CoreCms.Net.Core
                 //Console.ReadLine();
 
 
-                //控制台输入
-                string inputFist = Console.ReadLine();
-                while (inputFist != null)
+
+                using (new BackgroundJobServer())
                 {
-                    IChannelGroup group = TCPsocketClientCollection.Getgroup();
-                    IByteBuffer resultbyte = Unpooled.CopiedBuffer(Encoding.Default.GetBytes(inputFist));
-                    if (group != null)
-                        group.WriteAndFlushAsync(resultbyte);
-                    inputFist = Console.ReadLine();
+                    //控制台输入
+                    string inputFist = Console.ReadLine();
+                    while (inputFist != null)
+                    {
+                        IChannelGroup group = TCPsocketClientCollection.Getgroup();
+                        IByteBuffer resultbyte = Unpooled.CopiedBuffer(Encoding.Default.GetBytes(inputFist));
+                        if (group != null)
+                            group.WriteAndFlushAsync(resultbyte);
+                        inputFist = Console.ReadLine();
 
+                    }
+
+                    boundChannel.CloseAsync();
                 }
-
-                boundChannel.CloseAsync();
-
+                
 
 
             }

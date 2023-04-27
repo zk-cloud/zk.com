@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CoreProject.Net.Models.FromDate
+namespace CoreCms.Net.Model.FromDate
 {
     public class FMTrackDto
     {

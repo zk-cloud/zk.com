@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoreProject.Net.Models.FromDto
+namespace CoreCms.Net.Model.FromDto
 {
     public class FMDoSetSysOrganizationLeaderPost
     {

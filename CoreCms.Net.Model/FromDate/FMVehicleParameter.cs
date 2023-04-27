@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoreProject.Net.Models.FromDate
+namespace CoreCms.Net.Model.FromDate
 {
     /// <summary>
     /// 车辆参数上传标准

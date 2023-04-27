@@ -15,7 +15,10 @@ namespace CoreCms.Net.Caching.AutoMate.RedisCache
         Task<string> Get(string key);
 
         //获取值，并序列化
-        Task<TEntity> Get<TEntity>(string key);
+        public TEntity Get<TEntity>(string key);
+
+        //获取值，并序列化的异步方法
+        Task<TEntity> GetAsync<TEntity>(string key);
 
         //保存
         Task Set(string key, object value, TimeSpan cacheTime);
@@ -139,5 +142,66 @@ namespace CoreCms.Net.Caching.AutoMate.RedisCache
         /// <param name="score">分数</param>
         Task SortedSetAddAsync(string redisKey, string redisValue, double score);
 
+        /// <summary>
+        /// 添加集合
+        /// </summary>
+        /// <param name="redisKey"></param>
+        /// <param name="redisValue"></param>
+        /// <returns></returns>
+        Task AddSetAsync(string redisKey, string redisValue);
+
+        /// <summary>
+        /// 添加集合
+        /// </summary>
+        /// <param name="redisKey"></param>
+        /// <param name="redisValue"></param>
+        /// <returns></returns>
+        Task AddSetAsync(string redisKey, string[] redisValue);
+
+        /// <summary>
+        /// 获取集合内所有值
+        /// </summary>
+        /// <param name="redisKey"></param>
+        /// <returns></returns>
+        Task<RedisValue[]> GetSetAsync(string redisKey);
+
+        /// <summary>
+        /// 删除集合内某一值
+        /// </summary>
+        /// <param name="redisKey"></param>
+        /// <param name="redisvalue"></param>
+        /// <returns></returns>
+        Task<bool> DelSetAsync(string redisKey, string redisvalue);
+
+
+        /// <summary>
+        /// 判断集合内是否存在某值
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        Task<bool> ExistSetAsync(string key, string value);
+
+        /// <summary>
+        /// 异步锁
+        /// </summary>
+        /// <param name="lockName"></param>
+        /// <param name="act"></param>
+        /// <param name="expiry"></param>
+        /// <param name="retry"></param>
+        /// <param name="tryDelay"></param>
+        /// <returns></returns>
+        Task LockActionAsync(string lockName, Func<Task> act, int expiry = 10, int retry = 100, int tryDelay = 20);
+
+        /// <summary>
+        /// 同步锁
+        /// </summary>
+        /// <param name="lockName"></param>
+        /// <param name="act"></param>
+        /// <param name="expiry"></param>
+        /// <param name="retry"></param>
+        /// <param name="tryDelay"></param>
+        /// <returns></returns>
+        void LockAction(string lockName, Action act, int expiry = 10, int retry = 100, int tryDelay = 20);
     }
 }

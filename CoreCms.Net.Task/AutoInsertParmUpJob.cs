@@ -1,4 +1,5 @@
 ﻿using CoreCms.Net.Caching;
+using CoreCms.Net.Caching.AutoMate.RedisCache;
 using CoreCms.Net.Configuration;
 using CoreCms.Net.IServices;
 using System.Collections.Generic;

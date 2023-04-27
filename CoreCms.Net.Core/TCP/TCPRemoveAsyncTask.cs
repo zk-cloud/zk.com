@@ -1,7 +1,8 @@
 ﻿using CoreCms.Net.Caching;
+using CoreCms.Net.Caching.AutoMate.RedisCache;
 using CoreCms.Net.Configuration;
+using CoreCms.Net.Model.FromDate;
 using CoreCms.Net.Utility.YLQCHelper;
-using CoreProject.Net.Models.FromDate;
 using DotNetty.Common.Concurrency;
 using DotNetty.Transport.Channels;
 using System;

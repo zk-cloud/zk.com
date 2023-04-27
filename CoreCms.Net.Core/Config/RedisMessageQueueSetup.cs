@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CoreCms.Net.Configuration;
+using CoreCms.Net.RedisMQ;
 using CoreCms.Net.RedisMQ.Subscribe;
 using CoreCms.Net.Utility.Extensions;
 using InitQ;
@@ -39,6 +40,8 @@ namespace CoreCms.Net.Core.Config
                     typeof(WeChatPayNoticeSubscribe),
                     typeof(SendWxTemplateMessageSubscribe),
                     typeof(AfterSalesReviewSubscribe),
+                    typeof(VehicleParamerUpdateSubscribe),
+                    typeof(GPSInfoSubscribe)
                 };
                 //显示日志
                 m.ShowLog = false;

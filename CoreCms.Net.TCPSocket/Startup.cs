@@ -1,6 +1,8 @@
+using Autofac;
 using CoreCms.Net.Auth;
 using CoreCms.Net.Auth.HttpContextUser;
 using CoreCms.Net.Configuration;
+using CoreCms.Net.Core.AutoFac;
 using CoreCms.Net.Core.Config;
 using CoreCms.Net.Core.HangFire;
 using CoreCms.Net.Mapping;
@@ -11,20 +13,14 @@ using Hangfire.Dashboard.BasicAuthorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using static CoreCms.Net.Utility.Hub.ChatHub;
 
-namespace CoreCms.Net.TCPSocket
+namespace CoreCms.Net.WebSocket
 {
     public class Startup
     {
@@ -95,6 +91,11 @@ namespace CoreCms.Net.TCPSocket
             //services.AddHostedService<RecurringJobsService>();
         }
 
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new AutofacModuleRegister());
+        }
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -111,8 +112,8 @@ namespace CoreCms.Net.TCPSocket
                     // Users
                     Users = new[] {
                         new BasicAuthAuthorizationUser{
-                            Login="kf",
-                            PasswordClear="123456"
+                            Login="CoreShop",
+                            PasswordClear="CoreShop"
                         }
                     }
 

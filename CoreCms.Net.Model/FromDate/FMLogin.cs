@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace CoreProject.Net.Models.FromDate
+namespace CoreCms.Net.Model.FromDate
 {
 
 

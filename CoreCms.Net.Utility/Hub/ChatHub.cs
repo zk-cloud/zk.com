@@ -9,6 +9,10 @@
  ***********************************************************************/
 
 
+using CoreCms.Net.Utility.YLQCHelper;
+using DotNetty.Buffers;
+using DotNetty.Transport.Channels.Groups;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
@@ -18,19 +22,21 @@ using System.Threading.Tasks;
 
 namespace CoreCms.Net.Utility.Hub
 {
+    //继承IUserIdProvider用于告诉SignalR连接用谁来绑定用户id
+    public class ChatHubGetUserId : IUserIdProvider
+    {
+        string IUserIdProvider.GetUserId(HubConnectionContext connection)
+        {
+            //获取当前登录用户id
+            //string userid = connection.User.Identity.Name; 
+            string userid = connection.User.FindFirst(p => p.Type == JwtRegisteredClaimNames.Jti).Value;
+            return userid;
+        }
+    }
+    [Authorize("Permission")]
     public class ChatHub : Hub<IChatClient>
     {
-        //继承IUserIdProvider用于告诉SignalR连接用谁来绑定用户id
-        public class ChatHubGetUserId : IUserIdProvider
-        {
-            string IUserIdProvider.GetUserId(HubConnectionContext connection)
-            {
-                //获取当前登录用户id
-                //string userid = connection.User.Identity.Name; 
-                string userid = connection.User.FindFirst(p => p.Type == JwtRegisteredClaimNames.Jti).Value;
-                return userid;
-            }
-        }
+        
 
         /// <summary>
         /// 向指定群组发送信息
@@ -75,12 +81,61 @@ namespace CoreCms.Net.Utility.Hub
         }
 
         /// <summary>
+        /// 向TCP服务器指定用户发送指令
+        /// </summary>
+        /// <param name="Vin"></param>
+        /// <param name="Msg"></param>
+        /// <returns></returns>
+        public async Task SendTCPServer(string VIN, string Msg, string Useid)
+        {
+            if (VIN == "0")
+            {
+                IChannelGroup group = TCPsocketClientCollection.Getgroup();
+                IByteBuffer resultbyte = Unpooled.CopiedBuffer(Encoding.Default.GetBytes(Msg));
+                if (group != null)
+                    group.WriteAndFlushAsync(resultbyte);
+            }
+            else
+            {
+                var client = TCPsocketClientCollection.GetChannelDic(VIN);
+                //发送指令
+                if (client != null)
+                {
+                    IByteBuffer resultbyte = Unpooled.CopiedBuffer(Encoding.Default.GetBytes(Msg));
+                    client.WriteAndFlushAsync(resultbyte);
+                }
+                //await Clients.User(Useid).ReceiveMessage("发送成功");
+                await Clients.Caller.ReceiveMessage("发送成功");
+            }
+
+
+            //await Task.CompletedTask;
+        }
+
+        /// <summary>
+        /// 向TCP服务器发送消息并打印
+        /// </summary>
+        /// <param name="Vin"></param>
+        /// <param name="Msg"></param>
+        /// <returns></returns>
+        public async Task SendMessageAsync(string Useid, string Msg)
+        {
+            //打印消息
+            Console.WriteLine("用户" + Useid + ":" + " " + Msg);
+
+            //await Clients.All().ReceiveMessage("发送成功");
+            //await Task.CompletedTask;
+        }
+
+        /// <summary>
         /// 当连接建立时运行
         /// </summary>
         /// <returns></returns>
         public override Task OnConnectedAsync()
         {
             //TODO..
+            LogHelper.Info("当前连接已建立,当前客户端" + Context.ConnectionId);
+            Groups.AddToGroupAsync(Context.ConnectionId, Context.User.FindFirst("orgid").Value);
             return base.OnConnectedAsync();
         }
 
@@ -93,6 +148,11 @@ namespace CoreCms.Net.Utility.Hub
         {
             //TODO..
             return base.OnDisconnectedAsync(ex);
+        }
+
+        public async Task SendMessageSelf(string message)
+        {
+            await Clients.Caller.ReceiveMessage(message);
         }
 
 

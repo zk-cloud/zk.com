@@ -10,31 +10,24 @@ using CoreCms.Net.Mapping;
 using CoreCms.Net.Middlewares;
 using CoreCms.Net.Swagger;
 using CoreCms.Net.Task;
+using CoreCms.Net.WeChat.Service.Mediator;
+using Essensoft.Paylink.Alipay;
+using Essensoft.Paylink.WeChatPay;
 using Hangfire;
 using Hangfire.Dashboard.BasicAuthorization;
-using InitQ;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Qc.YilianyunSdk;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using CoreCms.Net.RedisMQ.Subscribe;
-using CoreCms.Net.Utility.Extensions;
-using CoreCms.Net.WeChat.Service.Mediator;
-using Essensoft.Paylink.Alipay;
-using Essensoft.Paylink.WeChatPay;
-using MediatR;
-using Microsoft.AspNetCore.HttpOverrides;
 
 namespace CoreCms.Net.Web.WebApi
 {
@@ -247,8 +240,8 @@ namespace CoreCms.Net.Web.WebApi
             };
 
             app.UseHangfireDashboard("/job", options); //可以改变Dashboard的url
-            HangfireDispose.HangfireService();
-
+            //HangfireDispose.HangfireService();
+            HangfireDispose.TCPHangfireService();
             #endregion
 
 

@@ -1,15 +1,10 @@
 using Autofac.Extensions.DependencyInjection;
 using CoreCms.Net.Core;
-using CoreProject.Net.WebSocket;
+using CoreCms.Net.WebSocket;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CoreCms.Net.TCPSocket
 {
@@ -30,6 +25,7 @@ namespace CoreCms.Net.TCPSocket
                 })
             .ConfigureServices(services =>
             {
+
                 services.AddHostedService<TcpServerHost>();
             })
             .ConfigureLogging(logging => {

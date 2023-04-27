@@ -1,14 +1,14 @@
 ﻿using Castle.Core.Internal;
-using CoreCms.Net.Caching;
+using CoreCms.Net.Caching.AutoMate.RedisCache;
 using CoreCms.Net.Configuration;
 using CoreCms.Net.IServices;
 using CoreCms.Net.Model.Entities;
+using CoreCms.Net.Model.FromDate;
+using CoreCms.Net.Model.FromDto;
 using CoreCms.Net.Models;
 using CoreCms.Net.Utility;
 using CoreCms.Net.Utility.Extensions;
 using CoreCms.Net.Utility.YLQCHelper;
-using CoreProject.Net.Models.FromDate;
-using CoreProject.Net.Models.FromDto;
 using DotNetty.Buffers;
 using DotNetty.Handlers.Timeout;
 using DotNetty.Transport.Channels;

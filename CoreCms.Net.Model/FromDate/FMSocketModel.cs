@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CoreProject.Net.Models.FromDate
+namespace CoreCms.Net.Model.FromDate
 {
     public class FMSocketModel
     {

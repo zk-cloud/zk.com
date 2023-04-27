@@ -1,8 +1,8 @@
-﻿using CoreCms.Net.Caching;
+﻿using CoreCms.Net.Caching.AutoMate.RedisCache;
 using CoreCms.Net.Configuration;
+using CoreCms.Net.Model.FromDate;
 using CoreCms.Net.Models;
 using CoreCms.Net.Utility;
-using CoreProject.Net.Models.FromDate;
 using DotNetty.Buffers;
 using DotNetty.Common.Concurrency;
 using System;

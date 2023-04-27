@@ -8,20 +8,20 @@
  *        Description: 暂无
  ***********************************************************************/
 
+using CoreCms.Net.Model.Entities;
+using CoreCms.Net.Model.FromDate;
+using CoreCms.Net.Model.FromDto;
+using CoreCms.Net.Model.ViewModels.Basics;
+using CoreCms.Net.Model.ViewModels.UI;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using CoreCms.Net.Model.Entities;
-using CoreCms.Net.Model.ViewModels.Basics;
-using CoreCms.Net.Model.ViewModels.UI;
-using CoreProject.Net.Models.FromDate;
-using CoreProject.Net.Models.FromDto;
-using SqlSugar;
 
 namespace CoreCms.Net.IServices
 {
-	/// <summary>
+    /// <summary>
     /// 车辆日志表 服务工厂接口
     /// </summary>
     public interface Ivehicle_TCPSocketServices : IBaseServices<vehicle_log>

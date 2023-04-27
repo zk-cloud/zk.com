@@ -19,12 +19,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using CoreCms.Net.Caching;
+using CoreCms.Net.Caching.AutoMate.RedisCache;
 using CoreCms.Net.Configuration;
 using CoreCms.Net.Core.Attribute;
 using CoreCms.Net.IRepository;
 using CoreCms.Net.IRepository.UnitOfWork;
 using CoreCms.Net.IServices;
 using CoreCms.Net.Model.Entities;
+using CoreCms.Net.Model.FromDate;
+using CoreCms.Net.Model.FromDto;
 using CoreCms.Net.Model.TCPSocket;
 using CoreCms.Net.Model.ViewModels.Basics;
 using CoreCms.Net.Model.ViewModels.UI;
@@ -33,8 +36,6 @@ using CoreCms.Net.Utility.Extensions;
 using CoreCms.Net.Utility.Helper;
 using CoreCms.Net.Utility.Hub;
 using CoreCms.Net.Utility.YLQCHelper;
-using CoreProject.Net.Models.FromDate;
-using CoreProject.Net.Models.FromDto;
 using DotNetty.Buffers;
 using DotNetty.Common.Utilities;
 using Hangfire.Storage;
@@ -1964,6 +1965,7 @@ namespace CoreCms.Net.Services
         }
         #endregion
 
+        #region List互转DataTable
         /// <summary>
         /// 将List转换为DataTable
         /// </summary>
@@ -2023,5 +2025,6 @@ namespace CoreCms.Net.Services
             }
             return list;
         }
+        #endregion
     }
 }

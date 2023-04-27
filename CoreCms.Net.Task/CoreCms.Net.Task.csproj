@@ -16,6 +16,7 @@
     <ProjectReference Include="..\CoreCms.Net.Repository\CoreCms.Net.Repository.csproj" />
     <ProjectReference Include="..\CoreCms.Net.Services\CoreCms.Net.Services.csproj" />
     <ProjectReference Include="..\CoreCms.Net.Utility\CoreCms.Net.Utility.csproj" />
+    <ProjectReference Include="..\CoreCms.Net.WeChat.Service\CoreCms.Net.WeChat.Service.csproj" />
   </ItemGroup>
 
 </Project>

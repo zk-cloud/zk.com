@@ -64,16 +64,14 @@ namespace CoreCms.Net.Task
 
             //定时刷新获取微信AccessToken
             RecurringJob.AddOrUpdate<RefreshWeChatAccessTokenJob>(s => s.Execute(), "0 0/4 * * * ? ", TimeZoneInfo.Local); // 每2分钟刷新获取微信AccessToken
-
         }
 
 
         public static void TCPHangfireService()
         {
-            RecurringJob.AddOrUpdate<AutoInsertParmUpJob>(s => s.Execute(), "0/1 * * * * ?", TimeZoneInfo.Utc); //每秒一次
-            RecurringJob.AddOrUpdate<AutoSendTCPAllJob>(s => s.Execute(), "0/20 * * * * ?", TimeZoneInfo.Utc); //每20秒一次
-
-
+            RecurringJob.AddOrUpdate<AutoInsertParmUpJob>(s => s.Execute(), "0/1 * * * * ?", TimeZoneInfo.Local); //每秒一次
+            RecurringJob.AddOrUpdate<AutoSendTCPAllJob>(s => s.Execute(), "0/20 * * * * ?", TimeZoneInfo.Local); //每20秒一次
+            
         }
 
         #endregion

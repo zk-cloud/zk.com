@@ -7,7 +7,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 
-namespace CoreProject.Net.WebSocket
+namespace CoreCms.Net.WebSocket
 {
     public static class Log4NetExtensions
     {

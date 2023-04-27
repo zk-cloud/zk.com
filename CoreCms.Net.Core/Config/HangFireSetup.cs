@@ -64,7 +64,7 @@ namespace CoreCms.Net.Core.Config
                         JobExpirationCheckInterval = TimeSpan.FromHours(1),       //- 作业到期检查间隔（管理过期记录）。默认值为1小时。
                         CountersAggregateInterval = TimeSpan.FromMinutes(5),      //- 聚合计数器的间隔。默认为5分钟。
                         PrepareSchemaIfNecessary = true,                          //- 如果设置为true，则创建数据库表。默认是true。
-                        DashboardJobListLimit = 500,                            //- 仪表板作业列表限制。默认值为50000。
+                        DashboardJobListLimit = 50000,                            //- 仪表板作业列表限制。默认值为50000。
                         TransactionTimeout = TimeSpan.FromMinutes(1),             //- 交易超时。默认为1分钟。
                         TablesPrefix = "Hangfire"                                  //- 数据库中表的前缀。默认为none
                     })));
@@ -87,8 +87,8 @@ namespace CoreCms.Net.Core.Config
             {
                 options.Queues = new[] { GlobalEnumVars.HangFireQueuesConfig.@default.ToString(), GlobalEnumVars.HangFireQueuesConfig.apis.ToString(), GlobalEnumVars.HangFireQueuesConfig.web.ToString(), GlobalEnumVars.HangFireQueuesConfig.recurring.ToString() };
                 options.ServerTimeout = TimeSpan.FromMinutes(4);
-                options.SchedulePollingInterval = TimeSpan.FromSeconds(15);//秒级任务需要配置短点，一般任务可以配置默认时间，默认15秒
-                options.ShutdownTimeout = TimeSpan.FromMinutes(5); //超时时间
+                options.SchedulePollingInterval = TimeSpan.FromSeconds(1);//秒级任务需要配置短点，一般任务可以配置默认时间，默认15秒
+                options.ShutdownTimeout = TimeSpan.FromMinutes(30); //超时时间
                 options.WorkerCount = Math.Max(Environment.ProcessorCount, 20); //工作线程数，当前允许的最大线程，默认20
             });
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -63,7 +64,21 @@ namespace CoreCms.Net.Caching.AutoMate.RedisCache
             }
         }
 
-        public async Task<TEntity> Get<TEntity>(string key)
+        public TEntity Get<TEntity>(string key)
+        {
+            var value = _database.StringGet(key);
+            if (value.HasValue)
+            {
+                //需要用的反序列化，将Redis存储的Byte[]，进行反序列化
+                return JsonConvert.DeserializeObject<TEntity>(value);
+            }
+            else
+            {
+                return default;
+            }
+        }
+
+        public async Task<TEntity> GetAsync<TEntity>(string key)
         {
             var value = await _database.StringGetAsync(key);
             if (value.HasValue)
@@ -239,5 +254,150 @@ namespace CoreCms.Net.Caching.AutoMate.RedisCache
             await _database.SortedSetAddAsync(redisKey, redisValue, score);
         }
 
+        /// <summary>
+        /// set集添加
+        /// </summary>
+        /// <param name="redisKey"></param>
+        /// <param name="redisValue"></param>
+        /// <returns></returns>
+        public async Task AddSetAsync(string redisKey, string redisValue)
+        {
+            await _database.SetAddAsync(redisKey, redisValue);
+        }
+
+        /// <summary>
+        /// set集添加
+        /// </summary>
+        /// <param name="redisKey"></param>
+        /// <param name="redisValue"></param>
+        /// <returns></returns>
+        public async Task AddSetAsync(string redisKey, string[] redisValue)
+        {
+            await _database.SetAddAsync(redisKey, redisValue.ToRedisValueArray());
+        }
+
+        /// <summary>
+        /// 获取set集
+        /// </summary>
+        /// <param name="redisKey"></param>
+        /// <returns></returns>
+        public async Task<RedisValue[]> GetSetAsync(string redisKey)
+        {
+            return await _database.SetMembersAsync(redisKey);
+        }
+
+        /// <summary>
+        /// 删除set集合某一数据
+        /// </summary>
+        /// <param name="redisKey"></param>
+        /// <returns></returns>
+        public async Task<bool> DelSetAsync(string redisKey, string redisvalue)
+        {
+            if (await _database.SetContainsAsync(redisKey, redisvalue))
+            {
+                return await _database.SetRemoveAsync(redisKey, redisvalue);
+            }
+            else
+            {
+                return await Task.FromResult(true);
+            }
+        }
+
+        /// <summary>
+        /// 判断元素是否在集合中
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public async Task<bool> ExistSetAsync(string key, string value)
+        {
+            return await _database.SetContainsAsync(key, value);
+        }
+
+
+        /// <summary>
+        /// 使用Redis分布式锁执行某些操作
+        /// </summary>
+        /// <param name="lockName">锁名</param>
+        /// <param name="act">操作</param>
+        /// <param name="expiry">锁过期时间，若超出时间自动解锁 单位：sec</param>
+        /// <param name="retry">获取锁的重复次数</param>
+        /// <param name="tryDelay">获取锁的重试间隔  单位：ms</param>
+        public void LockAction(string lockName, Action act, int expiry = 10, int retry = 100, int tryDelay = 20)
+        {
+            if (act.Method.IsDefined(typeof(AsyncStateMachineAttribute), false))
+            {
+                throw new ArgumentException("使用异步Action请调用LockActionAsync");
+            }
+
+            TimeSpan exp = TimeSpan.FromSeconds(expiry);
+            string token = Guid.NewGuid().ToString("N");
+            try
+            {
+                bool ok = false;
+                // 延迟重试
+                for (int test = 0; test < retry; test++)
+                {
+                    if (_database.LockTake(lockName, token, exp))
+                    {
+                        ok = true;
+                        break;
+                    }
+                    else
+                    {
+                        Task.Delay(tryDelay).Wait();
+                    }
+                }
+                if (!ok)
+                {
+                    throw new InvalidOperationException($"获取锁[{lockName}]失败");
+                }
+                act();
+            }
+            finally
+            {
+                _database.LockRelease(lockName, token);
+            }
+        }
+
+        /// <summary>
+        /// 使用Redis分布式锁执行某些异步操作
+        /// </summary>
+        /// <param name="lockName">锁名</param>
+        /// <param name="act">操作</param>
+        /// <param name="expiry">锁过期时间，若超出时间自动解锁 单位：sec</param>
+        /// <param name="retry">获取锁的重复次数</param>
+        /// <param name="tryDelay">获取锁的重试间隔  单位：ms</param>
+        public async Task LockActionAsync(string lockName, Func<Task> act, int expiry = 10, int retry = 100, int tryDelay = 20)
+        {
+            TimeSpan exp = TimeSpan.FromSeconds(expiry);
+            string token = Guid.NewGuid().ToString("N");
+            try
+            {
+                bool ok = false;
+                // 延迟重试
+                for (int test = 0; test < retry; test++)
+                {
+                    if (await _database.LockTakeAsync(lockName, token, exp))
+                    {
+                        ok = true;
+                        break;
+                    }
+                    else
+                    {
+                        await Task.Delay(tryDelay);
+                    }
+                }
+                if (!ok)
+                {
+                    throw new InvalidOperationException($"获取锁[{lockName}]失败");
+                }
+                await act();
+            }
+            finally
+            {
+                await _database.LockReleaseAsync(lockName, token);
+            }
+        }
     }
 }
