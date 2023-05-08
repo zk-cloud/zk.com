@@ -128,7 +128,7 @@ namespace CoreCms.Net.Web.WebApi
                     //实体验证
                     options.Filters.Add<RequiredErrorForClent>();
                     //异常处理
-                    options.Filters.Add<GlobalExceptionsFilterForClent>();
+                    //options.Filters.Add<GlobalExceptionsFilterForClent>();
                     //Swagger剔除不需要加入api展示的列表
                     options.Conventions.Add(new ApiExplorerIgnores());
                 })
@@ -240,8 +240,7 @@ namespace CoreCms.Net.Web.WebApi
             };
 
             app.UseHangfireDashboard("/job", options); //可以改变Dashboard的url
-            //HangfireDispose.HangfireService();
-            HangfireDispose.TCPHangfireService();
+            HangfireDispose.HangfireService();
             #endregion
 
 

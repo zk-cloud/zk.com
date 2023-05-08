@@ -1312,6 +1312,313 @@
             <param name="msgXml"></param>
             <returns></returns>
         </member>
+        <member name="T:CoreCms.Net.Web.WebApi.Controllers.yl_addressController">
+             <summary>
+             
+            </summary>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_addressController.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment,CoreCms.Net.IServices.Iyl_addressServices)">
+             <summary>
+             构造函数
+            </summary>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_addressController.GetPageList">
+            <summary>
+            获取列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_addressController.GetIndex">
+            <summary>
+            首页数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_addressController.GetCreate">
+            <summary>
+            创建数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_addressController.DoCreate(CoreCms.Net.Model.Entities.yl_address)">
+            <summary>
+            创建提交
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_addressController.GetEdit(CoreCms.Net.Model.FromBody.FMIntId)">
+            <summary>
+            编辑数据
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_addressController.DoEdit(CoreCms.Net.Model.Entities.yl_address)">
+            <summary>
+            编辑提交
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_addressController.DoDelete(CoreCms.Net.Model.FromBody.FMIntId)">
+            <summary>
+            单选删除
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_addressController.DoBatchDelete(CoreCms.Net.Model.FromBody.FMArrayIntIds)">
+            <summary>
+            批量删除
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_addressController.GetDetails(CoreCms.Net.Model.FromBody.FMIntId)">
+            <summary>
+            预览数据
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_addressController.SelectExportExcel(CoreCms.Net.Model.FromBody.FMArrayIntIds)">
+            <summary>
+            选择导出
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_addressController.QueryExportExcel">
+            <summary>
+            查询导出
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:CoreCms.Net.Web.WebApi.Controllers.yl_driverController">
+             <summary>
+             
+            </summary>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment,CoreCms.Net.IServices.Iyl_driverServices)">
+             <summary>
+             构造函数
+            </summary>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.GetPageList">
+            <summary>
+            获取列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.GetIndex">
+            <summary>
+            首页数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.GetCreate">
+            <summary>
+            创建数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.DoCreate(CoreCms.Net.Model.Entities.yl_driver)">
+            <summary>
+            创建提交
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.GetEdit(CoreCms.Net.Model.FromBody.FMIntId)">
+            <summary>
+            编辑数据
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.DoEdit(CoreCms.Net.Model.Entities.yl_driver)">
+            <summary>
+            编辑提交
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.DoDelete(CoreCms.Net.Model.FromBody.FMIntId)">
+            <summary>
+            单选删除
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.DoBatchDelete(CoreCms.Net.Model.FromBody.FMArrayIntIds)">
+            <summary>
+            批量删除
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.GetDetails(CoreCms.Net.Model.FromBody.FMIntId)">
+            <summary>
+            预览数据
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.SelectExportExcel(CoreCms.Net.Model.FromBody.FMArrayIntIds)">
+            <summary>
+            选择导出
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.QueryExportExcel">
+            <summary>
+            查询导出
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:CoreCms.Net.Web.WebApi.Controllers.yl_ordersController">
+             <summary>
+             
+            </summary>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_ordersController.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment,CoreCms.Net.IServices.Iyl_ordersServices)">
+             <summary>
+             构造函数
+            </summary>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_ordersController.GetPageList">
+            <summary>
+            获取列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_ordersController.GetIndex">
+            <summary>
+            首页数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_ordersController.GetCreate">
+            <summary>
+            创建数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_ordersController.DoCreate(CoreCms.Net.Model.Entities.yl_orders)">
+            <summary>
+            创建提交
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_ordersController.GetEdit(CoreCms.Net.Model.FromBody.FMIntId)">
+            <summary>
+            编辑数据
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_ordersController.DoEdit(CoreCms.Net.Model.Entities.yl_orders)">
+            <summary>
+            编辑提交
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_ordersController.DoDelete(CoreCms.Net.Model.FromBody.FMIntId)">
+            <summary>
+            单选删除
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_ordersController.DoBatchDelete(CoreCms.Net.Model.FromBody.FMArrayIntIds)">
+            <summary>
+            批量删除
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_ordersController.GetDetails(CoreCms.Net.Model.FromBody.FMIntId)">
+            <summary>
+            预览数据
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_ordersController.SelectExportExcel(CoreCms.Net.Model.FromBody.FMArrayIntIds)">
+            <summary>
+            选择导出
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_ordersController.QueryExportExcel">
+            <summary>
+            查询导出
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_ordersController.DoSetisDelete(CoreCms.Net.Model.FromBody.FMUpdateBoolDataByIntId)">
+            <summary>
+            设置
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_ordersController.DoSetisComfirm(CoreCms.Net.Model.FromBody.FMUpdateBoolDataByIntId)">
+            <summary>
+            设置
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CoreCms.Net.Web.WebApi.Controllers.yl_userController">
+             <summary>
+             
+            </summary>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_userController.#ctor(CoreCms.Net.IServices.Iyl_userServices,CoreCms.Net.IServices.ICoreCmsUserWeChatInfoServices,CoreCms.Net.Auth.Policys.PermissionRequirement,CoreCms.Net.WeChat.Service.HttpClients.IWeChatApiHttpClientFactory,Microsoft.Extensions.Options.IOptions{CoreCms.Net.WeChat.Service.Options.WeChatOptions})">
+             <summary>
+             构造函数
+            </summary>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_userController.OnLogin(CoreCms.Net.Model.FromBody.FMWxPost)">
+            <summary>
+            wx.login登陆成功之后发送的请求
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_userController.DecodeEncryptedData(CoreCms.Net.Model.FromBody.FMWxLoginDecodeEncryptedData)">
+            <summary>
+            核验数据并获取用户详细资料
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_userController.DecryptPhoneNumber(CoreCms.Net.Model.FromBody.FMWxLoginDecryptPhoneNumber)">
+            <summary>
+            微信小程序授权拉取手机号码
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_userController.LogOut">
+            <summary>
+            注销登录
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_userController.Edit(CoreCms.Net.Model.Entities.yl_user)">
+            <summary>
+            编辑用户资料
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
         <member name="T:CoreCms.Net.Web.WebApi.Program">
             <summary>
             启动类

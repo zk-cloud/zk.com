@@ -29,6 +29,8 @@ namespace CoreCms.Net.Core.Config
                 m.ConnectionString = AppSettingsConstVars.RedisConfigConnectionString;
                 //对应的订阅者类，需要new一个实例对象，当然你也可以传参，比如日志对象
                 m.ListSubscribe = new List<Type>() {
+                    typeof(VehicleParamerUpdateSubscribe),
+                    typeof(GPSInfoSubscribe),
                     typeof(OrderAgentOrDistributionSubscribe),
                     typeof(OrderAutomaticDeliverySubscribe),
                     typeof(OrderFinishCommandSubscribe),
@@ -39,9 +41,7 @@ namespace CoreCms.Net.Core.Config
                     typeof(UserSubscribe),
                     typeof(WeChatPayNoticeSubscribe),
                     typeof(SendWxTemplateMessageSubscribe),
-                    typeof(AfterSalesReviewSubscribe),
-                    typeof(VehicleParamerUpdateSubscribe),
-                    typeof(GPSInfoSubscribe)
+                    typeof(AfterSalesReviewSubscribe)
                 };
                 //显示日志
                 m.ShowLog = false;

@@ -33,6 +33,72 @@ namespace CoreCms.Net.Filter
 
             if (action.Controller.ControllerName == ("WeChatPay"))
                 action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("Advert"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("Agent"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("Article"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("Cart"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("Common"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("Coupon"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("Distribution"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("Form"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("Good"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("Group"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("Notice"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("Order"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("Page"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("Payments"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("PinTuan"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("Service"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("Store"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("User"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("WeChatAppletsMessage"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("yl_orders"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("yl_driver"))
+                action.ApiExplorer.IsVisible = false;
+
+            if (action.Controller.ControllerName == ("yl_address"))
+                action.ApiExplorer.IsVisible = false;
         }
     }
 }

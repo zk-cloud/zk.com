@@ -10,11 +10,16 @@
 
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq.Expressions;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using CoreCms.Net.Auth.IServices;
 using CoreCms.Net.IRepository;
 using CoreCms.Net.IServices;
 using CoreCms.Net.Model.ViewModels.Basics;
+using CoreCms.Net.Utility.Extensions;
+using CoreCms.Net.Utility.Helper;
 using SqlSugar;
 
 namespace CoreCms.Net.Services
@@ -1092,6 +1097,41 @@ namespace CoreCms.Net.Services
         public async Task<List<T>> SqlQueryable(string sql)
         {
             return await BaseDal.SqlQueryable(sql);
+        }
+
+        protected IHttpContextUser User;
+        protected void InitEntity(object obj)
+        {
+            if (obj.ContainsProperty("id"))
+            {
+                if (obj.GetPropertyType("id") == "Int64")
+                {
+                    obj.SetPropertyValue("id", IdHelper.GetLongId());
+                }
+                else if (obj.GetPropertyType("id") == "String")
+                {
+                    obj.SetPropertyValue("id", IdHelper.GetId());
+                }
+            }
+            if (obj.ContainsProperty("createTime"))
+                obj.SetPropertyValue("createTime", DateTime.Now);
+            if (obj.ContainsProperty("creatorId"))
+                obj.SetPropertyValue("creatorId", User?.GetClaim(JwtRegisteredClaimNames.Jti));
+            if (obj.ContainsProperty("createdBy"))
+                obj.SetPropertyValue("createdBy", User?.GetClaim(ClaimTypes.Name));
+            if (obj.ContainsProperty("isdeleted"))
+                obj.SetPropertyValue("isdeleted", false);
+        }
+
+
+        protected void InitUpdateEntity(object obj)
+        {
+
+            if (obj.ContainsProperty("updateTime"))
+                obj.SetPropertyValue("updateTime", DateTime.Now);
+
+            if (obj.ContainsProperty("updateBy"))
+                obj.SetPropertyValue("updateBy", User?.GetClaim(ClaimTypes.Name));
         }
     }
 }
