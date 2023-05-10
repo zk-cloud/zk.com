@@ -62,8 +62,26 @@ namespace CoreCms.Net.Model.Entities
         [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
         
         public System.String address  { get; set; }
-        
-		
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Display(Name = "")]
+
+
+
+        public double lat { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Display(Name = "")]
+
+
+
+        public double lng { get; set; }
+
         /// <summary>
         /// 
         /// </summary>

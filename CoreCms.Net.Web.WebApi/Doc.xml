@@ -135,6 +135,43 @@
             <param name="entity"></param>
             <returns></returns>
         </member>
+        <member name="T:CoreCms.Net.Web.WebApi.Controllers.BaiduMapController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.BaiduMapController.Geocoding(System.String)">
+            <summary>
+            正地理编码
+            </summary>
+            <param name="address">位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.BaiduMapController.ReverseGeocoding(System.Double,System.Double)">
+            <summary>
+            逆地理编码
+            </summary>
+            <param name="Lng">纬度</param>
+            <param name="Lat">经度</param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.BaiduMapController.LogisticsDirection(System.String,System.String,System.String,System.String)">
+            <summary>
+            货车路线规划
+            </summary>
+            <param name="origin">起点（经度,纬度），例如：113.077553,39.987654</param>
+            <param name="destination">终点（经度,纬度），例如：113.077553,39.987654</param>
+            <param name="waypoints">途径点（经度,纬度|经度,纬度），例如：113.077553,39.987654|113.833762,39.713354|...</param>
+            <param name="tactics">驾驶政策（0-默认时间最少,1-距离优先,3-少走高速,7-经济优先）</param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.BaiduMapController.Place(System.String)">
+            <summary>
+            地点输入提示
+            </summary>
+            <param name="query">输入查询地点</param>
+            <returns></returns>
+        </member>
         <member name="T:CoreCms.Net.Web.WebApi.Controllers.CartController">
             <summary>
             购物车操作
@@ -1400,82 +1437,43 @@
              
             </summary>
         </member>
-        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment,CoreCms.Net.IServices.Iyl_driverServices)">
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment,CoreCms.Net.IServices.Iyl_driverServices,CoreCms.Net.IServices.ICoreCmsUserWeChatInfoServices,CoreCms.Net.Auth.Policys.PermissionRequirement,CoreCms.Net.WeChat.Service.HttpClients.IWeChatApiHttpClientFactory,Microsoft.Extensions.Options.IOptions{CoreCms.Net.WeChat.Service.Options.WeChatOptions})">
              <summary>
              构造函数
             </summary>
         </member>
-        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.GetPageList">
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.OnLogin(CoreCms.Net.Model.FromBody.FMWxPost)">
             <summary>
-            获取列表
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.GetIndex">
-            <summary>
-            首页数据
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.GetCreate">
-            <summary>
-            创建数据
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.DoCreate(CoreCms.Net.Model.Entities.yl_driver)">
-            <summary>
-            创建提交
+            wx.login登陆成功之后发送的请求
             </summary>
             <param name="entity"></param>
             <returns></returns>
         </member>
-        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.GetEdit(CoreCms.Net.Model.FromBody.FMIntId)">
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.DecodeEncryptedData(CoreCms.Net.Model.FromBody.FMWxLoginDecodeEncryptedData)">
             <summary>
-            编辑数据
+            核验数据并获取用户详细资料
             </summary>
             <param name="entity"></param>
             <returns></returns>
         </member>
-        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.DoEdit(CoreCms.Net.Model.Entities.yl_driver)">
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.DecryptPhoneNumber(CoreCms.Net.Model.FromBody.FMWxLoginDecryptPhoneNumber)">
             <summary>
-            编辑提交
+            微信小程序授权拉取手机号码
             </summary>
             <param name="entity"></param>
             <returns></returns>
         </member>
-        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.DoDelete(CoreCms.Net.Model.FromBody.FMIntId)">
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.LogOut">
             <summary>
-            单选删除
+            注销登录
             </summary>
-            <param name="entity"></param>
             <returns></returns>
         </member>
-        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.DoBatchDelete(CoreCms.Net.Model.FromBody.FMArrayIntIds)">
+        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.Edit(CoreCms.Net.Model.Entities.yl_driver)">
             <summary>
-            批量删除
+            编辑用户资料
             </summary>
-            <param name="entity"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.GetDetails(CoreCms.Net.Model.FromBody.FMIntId)">
-            <summary>
-            预览数据
-            </summary>
-            <param name="entity"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.SelectExportExcel(CoreCms.Net.Model.FromBody.FMArrayIntIds)">
-            <summary>
-            选择导出
-            </summary>
-            <param name="entity"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CoreCms.Net.Web.WebApi.Controllers.yl_driverController.QueryExportExcel">
-            <summary>
-            查询导出
-            </summary>
+            <param name="user"></param>
             <returns></returns>
         </member>
         <member name="T:CoreCms.Net.Web.WebApi.Controllers.yl_ordersController">

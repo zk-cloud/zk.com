@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using CoreCms.Net.Utility;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using StackExchange.Redis;
@@ -52,7 +53,14 @@ namespace CoreCms.Net.Caching.AutoMate.RedisCache
 
         public async Task Remove(string key)
         {
-            await _database.KeyDeleteAsync(key);
+            try
+            {
+                await _database.KeyDeleteAsync(key);
+                await Task.CompletedTask;
+
+            }catch(Exception e) { 
+                LogHelper.Error("redis删除键不成功！",e);
+            }
         }
 
         public async Task Set(string key, object value, TimeSpan cacheTime)

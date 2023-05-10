@@ -181,7 +181,7 @@ namespace CoreCms.Net.Model.Entities
         
         [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
         
-        public System.String isRegister  { get; set; }
+        public bool IsRegister  { get; set; }
         
 		
         /// <summary>
@@ -193,7 +193,7 @@ namespace CoreCms.Net.Model.Entities
         
         [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
         
-        public System.String isDelete  { get; set; }
+        public bool IsDelete  { get; set; }
         
 		
         /// <summary>
@@ -205,7 +205,7 @@ namespace CoreCms.Net.Model.Entities
         
         [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
         
-        public System.String createor  { get; set; }
+        public System.String creator  { get; set; }
         
 		
         /// <summary>

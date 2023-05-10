@@ -110,8 +110,28 @@ namespace CoreCms.Net.Model.Entities
         [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
         
         public System.String sendAddress  { get; set; }
-        
-		
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Display(Name = "")]
+
+
+
+        public double sendLat { get; set; }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Display(Name = "")]
+
+
+
+        public double sendLng { get; set; }
+
+
         /// <summary>
         /// 
         /// </summary>

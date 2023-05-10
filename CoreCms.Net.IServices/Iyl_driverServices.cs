@@ -12,7 +12,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using CoreCms.Net.Configuration;
 using CoreCms.Net.Model.Entities;
+using CoreCms.Net.Model.FromBody;
 using CoreCms.Net.Model.ViewModels.Basics;
 using CoreCms.Net.Model.ViewModels.UI;
 using SqlSugar;
@@ -24,6 +26,16 @@ namespace CoreCms.Net.IServices
     /// </summary>
     public interface Iyl_driverServices : IBaseServices<yl_driver>
     {
+        /// <summary>
+        ///     手机短信验证码登陆，同时兼有手机短信注册的功能，还有第三方账户绑定的功能
+        /// </summary>
+        /// <param name="entity">实体数据</param>
+        /// <param name="loginType">登录方式(1普通,2短信,3微信小程序拉取手机号)</param>
+        /// <param name="platform"></param>
+        /// <returns></returns>
+        Task<WebApiCallBack> SmsLogin(FMWxAccountCreate entity,
+            int loginType = (int)GlobalEnumVars.LoginType.WeChatPhoneNumber, int platform = 1);
+
         #region 重写根据条件查询分页数据
         /// <summary>
         ///     重写根据条件查询分页数据
