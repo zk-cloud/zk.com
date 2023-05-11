@@ -31,17 +31,17 @@ namespace CoreCms.Net.Core.Config
                 m.ListSubscribe = new List<Type>() {
                     typeof(VehicleParamerUpdateSubscribe),
                     typeof(GPSInfoSubscribe),
-                    typeof(OrderAgentOrDistributionSubscribe),
-                    typeof(OrderAutomaticDeliverySubscribe),
-                    typeof(OrderFinishCommandSubscribe),
-                    typeof(OrderPrintSubscribe),
+                    //typeof(OrderAgentOrDistributionSubscribe),
+                    //typeof(OrderAutomaticDeliverySubscribe),
+                    //typeof(OrderFinishCommandSubscribe),
+                    //typeof(OrderPrintSubscribe),
 
-                    typeof(LogingSubscribe),
+                    //typeof(LogingSubscribe),
 
-                    typeof(UserSubscribe),
-                    typeof(WeChatPayNoticeSubscribe),
-                    typeof(SendWxTemplateMessageSubscribe),
-                    typeof(AfterSalesReviewSubscribe)
+                    //typeof(UserSubscribe),
+                    //typeof(WeChatPayNoticeSubscribe),
+                    //typeof(SendWxTemplateMessageSubscribe),
+                    //typeof(AfterSalesReviewSubscribe)
                 };
                 //显示日志
                 m.ShowLog = false;

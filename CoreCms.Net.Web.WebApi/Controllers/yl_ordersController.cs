@@ -124,7 +124,7 @@ namespace CoreCms.Net.Web.WebApi.Controllers
                 }
                 else
                 {
-                    var result = await _yl_ordersServices.DeleteAsync(p => p.id == id && p.userid == userid);
+                    var result = await _yl_ordersServices.DeleteAsync(p => p.number == number && p.userid == userid);
                     if (result)
                     {
                         jm.code = 0;
