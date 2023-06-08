@@ -4,7 +4,7 @@
  *                Web: https://www.corecms.net                      
  *             Author: 大灰灰                                          
  *              Email: jianweie@163.com                                
- *         CreateTime: 2023/5/4 8:46:26
+ *         CreateTime: 2023/6/6 17:22:19
  *        Description: 暂无
  ***********************************************************************/
 
@@ -26,13 +26,14 @@ namespace CoreCms.Net.Repository
     /// <summary>
     ///  接口实现
     /// </summary>
-    public class yl_addressRepository : BaseRepository<yl_address>, Iyl_addressRepository
+    public class yl_complaintsRepository : BaseRepository<yl_complaints>, Iyl_complaintsRepository
     {
         private readonly IUnitOfWork _unitOfWork;
-        public yl_addressRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public yl_complaintsRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
+
         #region 重写根据条件查询分页数据
         /// <summary>
         ///     重写根据条件查询分页数据
@@ -44,24 +45,28 @@ namespace CoreCms.Net.Repository
         /// <param name="orderByExpression"></param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
-        public new async Task<IPageList<yl_address>> QueryPageAsync(Expression<Func<yl_address, bool>> predicate,
-            Expression<Func<yl_address, object>> orderByExpression, OrderByType orderByType, int pageIndex = 1,
+        public new async Task<IPageList<yl_complaints>> QueryPageAsync(Expression<Func<yl_complaints, bool>> predicate,
+            Expression<Func<yl_complaints, object>> orderByExpression, OrderByType orderByType, int pageIndex = 1,
             int pageSize = 20, bool blUseNoLock = false)
         {
             RefAsync<int> totalCount = 0;
-            List<yl_address> page;
+            List<yl_complaints> page;
             if (blUseNoLock)
             {
-                page = await DbClient.Queryable<yl_address>()
+                page = await DbClient.Queryable<yl_complaints>()
                 .OrderByIF(orderByExpression != null, orderByExpression, orderByType)
-                .WhereIF(predicate != null, predicate).Select(p => new yl_address
+                .WhereIF(predicate != null, predicate).Select(p => new yl_complaints
                 {
                       id = p.id,
-                userid = p.userid,
-                address = p.address,
-                name = p.name,
-                phone = p.phone,
-                creator = p.creator,
+                userId = p.userId,
+                userName = p.userName,
+                driverId = p.driverId,
+                driverName = p.driverName,
+                reason = p.reason,
+                details = p.details,
+                annexes = p.annexes,
+                results = p.results,
+                createor = p.createor,
                 createTime = p.createTime,
                 modified = p.modified,
                 modifyTime = p.modifyTime,
@@ -70,23 +75,27 @@ namespace CoreCms.Net.Repository
             }
             else
             {
-                page = await DbClient.Queryable<yl_address>()
+                page = await DbClient.Queryable<yl_complaints>()
                 .OrderByIF(orderByExpression != null, orderByExpression, orderByType)
-                .WhereIF(predicate != null, predicate).Select(p => new yl_address
+                .WhereIF(predicate != null, predicate).Select(p => new yl_complaints
                 {
                       id = p.id,
-                userid = p.userid,
-                address = p.address,
-                name = p.name,
-                phone = p.phone,
-                creator = p.creator,
+                userId = p.userId,
+                userName = p.userName,
+                driverId = p.driverId,
+                driverName = p.driverName,
+                reason = p.reason,
+                details = p.details,
+                annexes = p.annexes,
+                results = p.results,
+                createor = p.createor,
                 createTime = p.createTime,
                 modified = p.modified,
                 modifyTime = p.modifyTime,
                 
                 }).ToPageListAsync(pageIndex, pageSize, totalCount);
             }
-            var list = new PageList<yl_address>(page, pageIndex, pageSize, totalCount);
+            var list = new PageList<yl_complaints>(page, pageIndex, pageSize, totalCount);
             return list;
         }
 

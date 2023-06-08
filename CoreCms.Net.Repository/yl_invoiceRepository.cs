@@ -4,7 +4,7 @@
  *                Web: https://www.corecms.net                      
  *             Author: 大灰灰                                          
  *              Email: jianweie@163.com                                
- *         CreateTime: 2023/5/4 8:46:26
+ *         CreateTime: 2023/6/6 17:22:32
  *        Description: 暂无
  ***********************************************************************/
 
@@ -26,13 +26,14 @@ namespace CoreCms.Net.Repository
     /// <summary>
     ///  接口实现
     /// </summary>
-    public class yl_addressRepository : BaseRepository<yl_address>, Iyl_addressRepository
+    public class yl_invoiceRepository : BaseRepository<yl_invoice>, Iyl_invoiceRepository
     {
         private readonly IUnitOfWork _unitOfWork;
-        public yl_addressRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public yl_invoiceRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
+
         #region 重写根据条件查询分页数据
         /// <summary>
         ///     重写根据条件查询分页数据
@@ -44,23 +45,25 @@ namespace CoreCms.Net.Repository
         /// <param name="orderByExpression"></param>
         /// <param name="blUseNoLock">是否使用WITH(NOLOCK)</param>
         /// <returns></returns>
-        public new async Task<IPageList<yl_address>> QueryPageAsync(Expression<Func<yl_address, bool>> predicate,
-            Expression<Func<yl_address, object>> orderByExpression, OrderByType orderByType, int pageIndex = 1,
+        public new async Task<IPageList<yl_invoice>> QueryPageAsync(Expression<Func<yl_invoice, bool>> predicate,
+            Expression<Func<yl_invoice, object>> orderByExpression, OrderByType orderByType, int pageIndex = 1,
             int pageSize = 20, bool blUseNoLock = false)
         {
             RefAsync<int> totalCount = 0;
-            List<yl_address> page;
+            List<yl_invoice> page;
             if (blUseNoLock)
             {
-                page = await DbClient.Queryable<yl_address>()
+                page = await DbClient.Queryable<yl_invoice>()
                 .OrderByIF(orderByExpression != null, orderByExpression, orderByType)
-                .WhereIF(predicate != null, predicate).Select(p => new yl_address
+                .WhereIF(predicate != null, predicate).Select(p => new yl_invoice
                 {
                       id = p.id,
-                userid = p.userid,
-                address = p.address,
-                name = p.name,
-                phone = p.phone,
+                userId = p.userId,
+                company = p.company,
+                taxID = p.taxID,
+                Remark = p.Remark,
+                amount = p.amount,
+                Email = p.Email,
                 creator = p.creator,
                 createTime = p.createTime,
                 modified = p.modified,
@@ -70,15 +73,17 @@ namespace CoreCms.Net.Repository
             }
             else
             {
-                page = await DbClient.Queryable<yl_address>()
+                page = await DbClient.Queryable<yl_invoice>()
                 .OrderByIF(orderByExpression != null, orderByExpression, orderByType)
-                .WhereIF(predicate != null, predicate).Select(p => new yl_address
+                .WhereIF(predicate != null, predicate).Select(p => new yl_invoice
                 {
                       id = p.id,
-                userid = p.userid,
-                address = p.address,
-                name = p.name,
-                phone = p.phone,
+                userId = p.userId,
+                company = p.company,
+                taxID = p.taxID,
+                Remark = p.Remark,
+                amount = p.amount,
+                Email = p.Email,
                 creator = p.creator,
                 createTime = p.createTime,
                 modified = p.modified,
@@ -86,7 +91,7 @@ namespace CoreCms.Net.Repository
                 
                 }).ToPageListAsync(pageIndex, pageSize, totalCount);
             }
-            var list = new PageList<yl_address>(page, pageIndex, pageSize, totalCount);
+            var list = new PageList<yl_invoice>(page, pageIndex, pageSize, totalCount);
             return list;
         }
 

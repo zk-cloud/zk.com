@@ -4,7 +4,7 @@
  *                Web: https://www.corecms.net                      
  *             Author: 大灰灰                                          
  *              Email: jianweie@163.com                                
- *         CreateTime: 2023/5/4 8:46:26
+ *         CreateTime: 2023/6/6 17:22:19
  *        Description: 暂无
  ***********************************************************************/
 
@@ -31,7 +31,7 @@ using Microsoft.AspNetCore.Mvc;
 using NPOI.HSSF.UserModel;
 using SqlSugar;
 
-namespace CoreCms.Net.Web.WebApi.Controllers
+namespace CoreCms.Net.Web.Admin.Controllers
 {
     /// <summary>
     /// 
@@ -39,143 +39,105 @@ namespace CoreCms.Net.Web.WebApi.Controllers
     [Route("api/[controller]/[action]")]
     [ApiController]
     [Authorize]
-    public class yl_addressController : ControllerBase
+    public class yl_complaintsController : ControllerBase
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly Iyl_addressServices _yl_addressServices;
+        private readonly Iyl_complaintsServices _yl_complaintsServices;
 
         /// <summary>
         /// 构造函数
         ///</summary>
-        public yl_addressController(IWebHostEnvironment webHostEnvironment
-            ,Iyl_addressServices yl_addressServices
+        public yl_complaintsController(IWebHostEnvironment webHostEnvironment
+            ,Iyl_complaintsServices yl_complaintsServices
             )
         {
             _webHostEnvironment = webHostEnvironment;
-            _yl_addressServices = yl_addressServices;
+            _yl_complaintsServices = yl_complaintsServices;
         }
 
-        #region 添加地址
+        #region 新增投诉
+        // POST: Api/yl_complaints/DoCreate
         /// <summary>
-        /// 添加地址
+        /// 新增投诉
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<WebApiCallBack> Add(yl_address entity)
+        [Description("新增投诉")]
+        public async Task<WebApiCallBack> Add([FromBody] yl_complaints entity)
         {
             var jm = new WebApiCallBack();
-
-            var result = await _yl_addressServices.InsertAsync(entity);
-
-            if(result > 0)
+            var result = await _yl_complaintsServices.InsertAsync(entity);
+            if (result > 0)
             {
+                jm.msg = "提交成功";
                 jm.code = 0;
-                jm.msg = "添加成功";
                 jm.status = true;
             }
             else
             {
+                jm.msg = "提交失败";
                 jm.code = 500;
-                jm.msg = "添加失败";
                 jm.status = false;
             }
-            
             return jm;
         }
         #endregion
 
-        #region 删除地址
+        #region 受理投诉
         /// <summary>
-        /// 删除地址
+        /// 受理投诉
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="results"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<WebApiCallBack> Delete(int id)
+        [Description("受理投诉")]
+        public async Task<WebApiCallBack> Results(int id, string results)
         {
             var jm = new WebApiCallBack();
-
-            var result = await _yl_addressServices.DeleteAsync(p => p.id == id);
-
+            var result = await _yl_complaintsServices.UpdateAsync(p => new yl_complaints() { results = results }, p => p.id == id);
             if (result)
             {
+                jm.msg = "提交成功";
                 jm.code = 0;
-                jm.msg = "删除成功";
                 jm.status = true;
             }
             else
             {
+                jm.msg = "提交失败";
                 jm.code = 500;
-                jm.msg = "删除失败";
                 jm.status = false;
             }
-
             return jm;
         }
         #endregion
 
-        #region 查询收藏地址
+        #region 查询历史投诉
         /// <summary>
-        /// 查询收藏地址
+        /// 查询历史投诉
         /// </summary>
-        /// <param name="userid"></param>
+        /// <param name="userid">用户ID</param>
         /// <returns></returns>
         [HttpPost]
+        [Description("查询历史投诉")]
         public async Task<WebApiCallBack> QueryForUser(int userid)
         {
             var jm = new WebApiCallBack();
-
-            var result = await _yl_addressServices.QueryListByClauseAsync(p => p.userid == userid);
-
-            if (result.Count > 0)
+            var result = await _yl_complaintsServices.QueryByClauseAsync(p => p.userId == userid);
+            if (result != null)
             {
-                jm.code = 0;
                 jm.msg = "查询成功";
+                jm.code = 0;
                 jm.data = result;
                 jm.status = true;
             }
             else
             {
+                jm.msg = "查询失败";
                 jm.code = 500;
-                jm.msg = "暂无收藏地址";
-                jm.data= null;
                 jm.status = false;
             }
-
-            return jm;
-        }
-        #endregion
-
-        #region 按地址名称查询收藏地址
-        /// <summary>
-        /// 按地址名称查询收藏地址
-        /// </summary>
-        /// <param name="userid"></param>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public async Task<WebApiCallBack> QueryForName(int userid, string name)
-        {
-            var jm = new WebApiCallBack();
-
-            var result = await _yl_addressServices.QueryListByClauseAsync(p => p.userid == userid && p.name.Contains(name));
-
-            if (result.Count > 0)
-            {
-                jm.code = 0;
-                jm.msg = "查询成功";
-                jm.data = result;
-                jm.status = true;
-            }
-            else
-            {
-                jm.code = 500;
-                jm.msg = "暂无收藏地址";
-                jm.data = null;
-                jm.status = false;
-            }
-
             return jm;
         }
         #endregion

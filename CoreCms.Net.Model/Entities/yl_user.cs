@@ -29,7 +29,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// id
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "id")]
 		
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         
@@ -43,7 +43,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 昵称
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "昵称")]
 		
         
         
@@ -55,7 +55,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 头像
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "头像")]
 		
         
         
@@ -67,7 +67,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 公司
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "公司")]
 		
         
         
@@ -75,11 +75,22 @@ namespace CoreCms.Net.Model.Entities
         
         public System.String company  { get; set; }
 
+        /// <summary>
+        /// 公司地址
+        /// </summary>
+        [Display(Name = "公司地址")]
+
+
+
+        [StringLength(maximumLength: 255, ErrorMessage = "{0}不能超过{1}字")]
+
+        public System.String address { get; set; }
+
 
         /// <summary>
         /// 类型（1.vip/2.个人/3.公司）
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "类型（1.vip/2.个人/3.公司）")]
 		
         
         
@@ -91,7 +102,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 姓名
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "姓名")]
 		
         
         
@@ -115,7 +126,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 月结账号
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "月结账号")]
 		
         
         
@@ -127,7 +138,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 微信openid
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "微信openid")]
 		
         
         
@@ -139,7 +150,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 微信unionid
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "微信unionid")]
 		
         
         
@@ -151,7 +162,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 手机号
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "手机号")]
 		
         
         
@@ -163,7 +174,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 验证码
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "验证码")]
 		
         
         
@@ -175,7 +186,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 是否注册
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "是否注册")]
 		
         
         
@@ -187,7 +198,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 是否删除
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "是否删除")]
 		
         
         
@@ -199,7 +210,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 创建人
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "创建人")]
 		
         
         
@@ -211,7 +222,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 创建时间
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "创建时间")]
 		
         
         
@@ -223,7 +234,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 修改人
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "修改人")]
 		
         
         
@@ -235,7 +246,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 修改时间
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "修改时间")]
 		
         
         

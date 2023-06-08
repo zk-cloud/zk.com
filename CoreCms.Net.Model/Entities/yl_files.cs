@@ -4,7 +4,7 @@
  *                Web: https://www.corecms.net                      
  *             Author: 大灰灰                                          
  *              Email: jianweie@163.com                                
- *         CreateTime: 2023/5/4 8:46:26
+ *         CreateTime: 2023/6/6 17:22:48
  *        Description: 暂无
  ***********************************************************************/
 
@@ -17,19 +17,19 @@ namespace CoreCms.Net.Model.Entities
     /// <summary>
     /// 
     /// </summary>
-    public partial class yl_address
+    public partial class yl_files
     {
         /// <summary>
         /// 构造函数
         /// </summary>
-        public yl_address()
+        public yl_files()
         {
         }
 		
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "id")]
+        [Display(Name = "")]
 		
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         
@@ -43,73 +43,31 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "用户id")]
-		
-        
-        
-        
-        
-        public System.Int32? userid  { get; set; }
-        
-		
-        /// <summary>
-        /// 
-        /// </summary>
-        [Display(Name = "地址")]
+        [Display(Name = "")]
 		
         
         
         [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
         
-        public System.String address  { get; set; }
-
-
+        public System.String Name  { get; set; }
+        
+		
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "经度")]
-
-
-
-        public double lat { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [Display(Name = "纬度")]
-
-
-
-        public double lng { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [Display(Name = "联系人")]
+        [Display(Name = "")]
 		
         
         
         [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
         
-        public System.String name  { get; set; }
+        public System.String Path  { get; set; }
         
 		
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "联系电话")]
-		
-        
-        
-        [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
-        
-        public System.String phone  { get; set; }
-        
-		
-        /// <summary>
-        /// 
-        /// </summary>
-        [Display(Name = "创建人")]
+        [Display(Name = "")]
 		
         
         
@@ -121,7 +79,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "创建时间")]
+        [Display(Name = "")]
 		
         
         
@@ -133,7 +91,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "修改人")]
+        [Display(Name = "")]
 		
         
         
@@ -145,7 +103,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "修改时间")]
+        [Display(Name = "")]
 		
         
         

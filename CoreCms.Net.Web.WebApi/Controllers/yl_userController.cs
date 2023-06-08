@@ -54,6 +54,9 @@ using CoreCms.Net.Utility;
 using NLog.Layouts;
 using Newtonsoft.Json;
 using AutoMapper;
+using CoreCms.Net.Model.ViewModels.DTO;
+using CoreCms.Net.Auth.HttpContextUser;
+using Org.BouncyCastle.Bcpg.OpenPgp;
 
 namespace CoreCms.Net.Web.WebApi.Controllers
 {
@@ -64,10 +67,11 @@ namespace CoreCms.Net.Web.WebApi.Controllers
     [ApiController]
     public class yl_userController : ControllerBase
     {
+        private readonly IHttpContextUser _user;
         private readonly Iyl_userServices _yl_userServices;
         private readonly ICoreCmsUserWeChatInfoServices _userWeChatInfoServices;
         private readonly PermissionRequirement _permissionRequirement;
-
+        private readonly ICoreCmsBillPaymentsServices _billPaymentsServices;
         private readonly IWeChatApiHttpClientFactory _weChatApiHttpClientFactory;
         private readonly WeChatOptions _weChatOptions;
 
@@ -76,16 +80,20 @@ namespace CoreCms.Net.Web.WebApi.Controllers
         /// <summary>
         /// 构造函数
         ///</summary>
-        public yl_userController(Iyl_userServices yl_userServices
+        public yl_userController(IHttpContextUser user
+            , Iyl_userServices yl_userServices
             , ICoreCmsUserWeChatInfoServices userWeChatInfoServices
             , PermissionRequirement permissionRequirement
             , IWeChatApiHttpClientFactory weChatApiHttpClientFactory
             , IOptions<WeChatOptions> weChatOptions
+            , ICoreCmsBillPaymentsServices billPaymentsServices
             )
         {
+            _user = user;
             _yl_userServices = yl_userServices;
             _userWeChatInfoServices = userWeChatInfoServices;
             _permissionRequirement = permissionRequirement;
+            _billPaymentsServices = billPaymentsServices;
             _weChatApiHttpClientFactory = weChatApiHttpClientFactory;
             _weChatOptions = weChatOptions.Value;
         }
@@ -351,6 +359,77 @@ namespace CoreCms.Net.Web.WebApi.Controllers
             }
             return jm;
         }
+        #endregion
+
+        #region 用户认证
+        /// <summary>
+        /// 用户认证
+        /// </summary>
+        /// <param name="company">公司名称</param>
+        /// <param name="address">公司地址</param>
+        /// <param name="realname">真实姓名</param>
+        /// <param name="phone">电话号码</param>
+        /// <param name="IDcard">身份证号</param>
+        /// <param name="openid">微信openid</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Authorize]
+        public async Task<WebApiCallBack> EditUser(string company, string address, string realname, string phone, string IDcard, string openid)
+        {
+            var jm = new WebApiCallBack();
+
+            var result = await _yl_userServices.UpdateAsync(p => new yl_user(){ 
+                company = company,
+                address = address,
+                realName = realname,
+                phone = phone,
+                idCrad = IDcard
+            } ,p => p.openid == openid);
+            if (result)
+            {
+                jm.msg = "编辑修改成功";
+                jm.code = 0;
+                jm.status = true;
+            }
+            else
+            {
+                jm.msg = "编辑修改失败";
+                jm.code = 500;
+                jm.status = false;
+            }
+            return jm;
+        }
+        #endregion
+
+        #region 支付
+
+        /// <summary>
+        /// 支付
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Authorize]
+        public async Task<WebApiCallBack> Pay([FromBody] PayPost entity)
+        {
+            var jm = new WebApiCallBack();
+
+            if (string.IsNullOrEmpty(entity.ids))
+            {
+                jm.code = 13100;
+                jm.msg = GlobalErrorCodeVars.Code13100;
+            }
+            else if (string.IsNullOrEmpty(entity.payment_code))
+            {
+                jm.code = 10055;
+                jm.msg = GlobalErrorCodeVars.Code10055;
+            }
+            //生成支付单,并发起支付
+            jm = await _billPaymentsServices.Pay(entity.ids, entity.payment_code, _user.ID, (int)GlobalEnumVars.BillPaymentsType.ServiceOrder,
+                entity.@params);
+
+            return jm;
+        }
+
         #endregion
     }
 }

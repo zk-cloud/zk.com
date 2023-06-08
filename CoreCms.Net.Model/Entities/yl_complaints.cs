@@ -4,7 +4,7 @@
  *                Web: https://www.corecms.net                      
  *             Author: 大灰灰                                          
  *              Email: jianweie@163.com                                
- *         CreateTime: 2023/5/4 8:46:37
+ *         CreateTime: 2023/6/6 17:22:19
  *        Description: 暂无
  ***********************************************************************/
 
@@ -17,19 +17,19 @@ namespace CoreCms.Net.Model.Entities
     /// <summary>
     /// 
     /// </summary>
-    public partial class yl_driver
+    public partial class yl_complaints
     {
         /// <summary>
         /// 构造函数
         /// </summary>
-        public yl_driver()
+        public yl_complaints()
         {
         }
 		
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "id")]
+        [Display(Name = "")]
 		
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         
@@ -43,175 +43,115 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "姓名")]
+        [Display(Name = "")]
 		
+        [Required(ErrorMessage = "请输入{0}")]
         
         
-        [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
         
-        public System.String name  { get; set; }
-        
-		
-        /// <summary>
-        /// 
-        /// </summary>
-        [Display(Name = "头像")]
-		
-        
-        
-        [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
-        
-        public System.String avatar  { get; set; }
+        public System.Int32 userId  { get; set; }
         
 		
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "车型")]
+        [Display(Name = "")]
 		
         
         
         [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
         
-        public System.String carType  { get; set; }
+        public System.String userName  { get; set; }
         
 		
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "车牌")]
+        [Display(Name = "")]
+		
+        
+        
+        
+        
+        public System.Int32? driverId  { get; set; }
+        
+		
+        /// <summary>
+        /// 
+        /// </summary>
+        [Display(Name = "")]
 		
         
         
         [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
         
-        public System.String licensePlate  { get; set; }
+        public System.String driverName  { get; set; }
         
 		
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "真实姓名")]
+        [Display(Name = "")]
 		
         
         
         [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
         
-        public System.String realName  { get; set; }
+        public System.String reason  { get; set; }
         
 		
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "身份证")]
+        [Display(Name = "")]
+		
+        
+        
+        [StringLength(maximumLength:1000,ErrorMessage = "{0}不能超过{1}字")]
+        
+        public System.String details  { get; set; }
+        
+		
+        /// <summary>
+        /// 
+        /// </summary>
+        [Display(Name = "")]
+
+
+
+
+        [StringLength(maximumLength: 500, ErrorMessage = "{0}不能超过{1}字")]
+        public System.String annexes  { get; set; }
+        
+		
+        /// <summary>
+        /// 
+        /// </summary>
+        [Display(Name = "")]
+		
+        
+        
+        [StringLength(maximumLength:1000,ErrorMessage = "{0}不能超过{1}字")]
+        
+        public System.String results  { get; set; }
+        
+		
+        /// <summary>
+        /// 
+        /// </summary>
+        [Display(Name = "")]
 		
         
         
         [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
         
-        public System.String idCard  { get; set; }
+        public System.String createor  { get; set; }
         
 		
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "驾照")]
-		
-        
-        
-        [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
-        
-        public System.String licence  { get; set; }
-        
-		
-        /// <summary>
-        /// 
-        /// </summary>
-        [Display(Name = "微信openid")]
-		
-        
-        
-        [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
-        
-        public System.String openid  { get; set; }
-        
-		
-        /// <summary>
-        /// 
-        /// </summary>
-        [Display(Name = "微信unionid")]
-		
-        
-        
-        [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
-        
-        public System.String unionid  { get; set; }
-        
-		
-        /// <summary>
-        /// 
-        /// </summary>
-        [Display(Name = "手机号")]
-		
-        
-        
-        [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
-        
-        public System.String phone  { get; set; }
-        
-		
-        /// <summary>
-        /// 
-        /// </summary>
-        [Display(Name = "验证码")]
-		
-        
-        
-        [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
-        
-        public System.String code  { get; set; }
-        
-		
-        /// <summary>
-        /// 
-        /// </summary>
-        [Display(Name = "是否注册")]
-		
-        
-        
-        [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
-        
-        public bool IsRegister  { get; set; }
-        
-		
-        /// <summary>
-        /// 
-        /// </summary>
-        [Display(Name = "是否删除")]
-		
-        
-        
-        [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
-        
-        public bool IsDelete  { get; set; }
-        
-		
-        /// <summary>
-        /// 
-        /// </summary>
-        [Display(Name = "创建人")]
-		
-        
-        
-        [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
-        
-        public System.String creator  { get; set; }
-        
-		
-        /// <summary>
-        /// 
-        /// </summary>
-        [Display(Name = "创建时间")]
+        [Display(Name = "")]
 		
         
         
@@ -223,7 +163,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "修改人")]
+        [Display(Name = "")]
 		
         
         
@@ -235,7 +175,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "修改时间")]
+        [Display(Name = "")]
 		
         
         

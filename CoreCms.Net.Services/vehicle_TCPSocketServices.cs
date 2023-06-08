@@ -31,6 +31,7 @@ using DotNetty.Common.Utilities;
 using Microsoft.AspNetCore.SignalR;
 using Newtonsoft.Json;
 using SqlSugar;
+using SqlSugar.IOC;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -67,6 +68,8 @@ namespace CoreCms.Net.Services
         private static readonly ReaderWriterLockSlim _lock = new ReaderWriterLockSlim();
         static object myLock = new object();
 
+        private readonly ISqlSugarClient _db;
+
         public vehicle_TCPSocketServices(
             IUnitOfWork unitOfWork
             , Ivehicle_TCPSocketRepository dal
@@ -83,7 +86,8 @@ namespace CoreCms.Net.Services
             , Ivehicle_mculogRepository ivehicle_mculogRepository
             , Ivehicle_batterydylogRepository ivehicle_batterydylogRepository
             , Ivehicle_batterywdlogRepository ivehicle_batterywdlogRepository
-            , Ivehicle_troubleshootingRepository ivehicle_troubleshootingRepository)
+            , Ivehicle_troubleshootingRepository ivehicle_troubleshootingRepository
+            , ISqlSugarClient context = null)
         {
             _Mapper = Mapper;
             _ChatHub = ChatHub;
@@ -619,22 +623,19 @@ namespace CoreCms.Net.Services
             {
                 //var vclass = new vehicle_gbt32960();
                 //var properties = vclass.GetType().GetProperties();
+                var db = SqlSugarHelper.Db;
                 //国标表
                 DataTable dt = new DataTable();
-                var gbt32960 = _ivehicle_gbt32960Repository.QueryListByClause(p => false);
-                dt = ListToDataTable(gbt32960);
+                dt = db.GetSimpleClient<vehicle_gbt32960>().AsQueryable().Where(p => false).ToDataTable();
                 //驱动电机列表
                 DataTable dtmcu = new DataTable();
-                var mculog = _ivehicle_mculogRepository.QueryListByClause(p => false);
-                dtmcu = ListToDataTable(mculog);
+                dtmcu = db.GetSimpleClient<vehicle_mculog>().AsQueryable().Where(p => false).ToDataTable();
                 //电池电压列表
                 DataTable dtdcdy = new DataTable();
-                var batterydy = _ivehicle_batterydylogRepository.QueryListByClause(p => false);
-                dtdcdy = ListToDataTable(batterydy);
+                dtdcdy = db.GetSimpleClient<vehicle_batterydylog>().AsQueryable().Where(p => false).ToDataTable();
                 //电磁温度列表
                 DataTable dtdcwd = new DataTable();
-                var batterywd = _ivehicle_batterywdlogRepository.QueryListByClause(p => false);
-                dtdcwd = ListToDataTable(batterywd);
+                dtdcwd = db.GetSimpleClient<vehicle_batterywdlog>().AsQueryable().Where(p => false).ToDataTable();
 
                 //头部
                 string headpart = hexstrpart.Substring(0, 12);
@@ -997,7 +998,6 @@ namespace CoreCms.Net.Services
 
 
                 _unitOfWork.BeginTran();
-                var db = SqlSugarHelper.Db;
                 db.Insertable(dc).AS("vehicle_gbt32960").ExecuteReturnIdentity();
                 db.Insertable(dcdcdy).AS("vehicle_batterydylog").ExecuteReturnIdentity();
                 db.Insertable(dcdcwd).AS("vehicle_batterywdlog").ExecuteReturnIdentity();
@@ -1036,36 +1036,33 @@ namespace CoreCms.Net.Services
             {
                 result.code = 0;
                 result.status = true;
-                result.msg = "接口调用成功！";
+                result.msg = "接口响应成功";
                 return result;
             }
-            //var client = TCPsocketClientCollection.Get(LogToken);
 
-            List<vehicle_terminalconfigure> list = await _ivehicle_terminalconfigureRepository.QueryListByClauseAsync(p => p.MsgID.StartsWith("GBT32960"));
+            var db = SqlSugarHelper.Db;
+            List<vehicle_terminalconfigure> list = await db.GetSimpleClient<vehicle_terminalconfigure>().GetListAsync(p => p.MsgID.StartsWith("GBT32960"));
 
             var nowtime = DateTime.Now;
             var nextdate = nowtime.AddDays(1);
             //var vclass = new vehicle_gbt32960();
             //var properties = vclass.GetType().GetProperties();
 
+            
             //国标表
             DataTable dt = new DataTable();
-            var gbt32960 = _ivehicle_gbt32960Repository.QueryListByClause(p => false);
-            dt = ListToDataTable(gbt32960);
+            dt = db.GetSimpleClient<vehicle_gbt32960>().AsQueryable().Where(p => false).SplitTable(tabs => tabs.Take(1)).ToDataTable();
             //驱动电机列表
             DataTable dtmcu = new DataTable();
-            var mculog = _ivehicle_mculogRepository.QueryListByClause(p => false);
-            dtmcu = ListToDataTable(mculog);
+            dtmcu = db.GetSimpleClient<vehicle_mculog>().AsQueryable().Where(p => false).SplitTable(tabs => tabs.Take(1)).ToDataTable();
             //电池电压列表
             DataTable dtdcdy = new DataTable();
-            var batterydy = _ivehicle_batterydylogRepository.QueryListByClause(p => false);
-            dtdcdy = ListToDataTable(batterydy);
+            dtdcdy = db.GetSimpleClient<vehicle_batterydylog>().AsQueryable().Where(p => false).SplitTable(tabs => tabs.Take(1)).ToDataTable();
             //电磁温度列表
             DataTable dtdcwd = new DataTable();
-            var batterywd = _ivehicle_batterywdlogRepository.QueryListByClause(p => false);
-            dtdcwd = ListToDataTable(batterywd);
+            dtdcwd = db.GetSimpleClient<vehicle_batterywdlog>().AsQueryable().Where(p => false).SplitTable(tabs => tabs.Take(1)).ToDataTable();
             //故障表
-            List<vehicle_troubleshooting> vtslist = await _ivehicle_troubleshootingRepository.QueryListByClauseAsync(p => !p.state);
+            List<vehicle_troubleshooting> vtslist = await db.GetSimpleClient<vehicle_troubleshooting>().AsQueryable().Where(p => !p.state).ToListAsync();
             List<vehicle_troubleshooting> updatevtslist = new List<vehicle_troubleshooting>();
             List<string> orglist = new List<string>();
 
@@ -1162,7 +1159,7 @@ namespace CoreCms.Net.Services
                     string update = infodate.Substring(0, infodate.Length - 1);
                     vhlist[roelenght - 1] = update;
                     string VIN = YLQCHelper.HexStringToASCII(VINstr);
-                    if (TCPsocketClientCollection.GetChannelDic(VIN)?.Id.AsLongText() != cachecode)
+                    if (!cachecode.EndsWith(TCPsocketClientCollection.GetChannelDic(VIN)?.Id.AsLongText()))
                     {
 
                         if (!TCPsocketClientCollection.GetChannelDic(VIN).IsNull())
@@ -1910,9 +1907,9 @@ namespace CoreCms.Net.Services
                 //base.Context.Insertable(dcdcwd).AS("vehicle_batterywdlog").SplitTable().ExecuteCommand();
                 //base.Context.Storageable(updatevtslist).ExecuteCommand();
                 //tran.Ado.CommitTran();
-                var db = SqlSugarHelper.Db;
                 _unitOfWork.BeginTran();
                 //base.Context.Fastest<vehicle_gbt32960>().SplitTable().BulkCopy(gbtlist);
+
                 db.Insertable(gbtlist).SplitTable().ExecuteReturnSnowflakeIdList();//插入返回雪花ID集合
                 db.Insertable(gbtmculist).SplitTable().ExecuteReturnSnowflakeIdList();//插入返回雪花ID集合
                 db.Insertable(gbtdylist).SplitTable().ExecuteReturnSnowflakeIdList();//插入返回雪花ID集合
@@ -2009,16 +2006,26 @@ namespace CoreCms.Net.Services
         public static List<Dictionary<string, object>> DataTableToDictionary(DataTable dt)
         {
             List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
-
-            foreach (DataRow dr in dt.Rows)
+            if (dt != null && dt.Rows.Count > 0)
             {
-                Dictionary<string, object> dic = new Dictionary<string, object>();
-                foreach (DataColumn dc in dt.Columns)
+                foreach (DataRow row in dt.Rows)
                 {
-                    dic.Add(dc.ColumnName, dr[dc.ColumnName]);
+                    Dictionary<string, object> dictionary = new Dictionary<string, object>();
+                    for (int i = 0; i < row.Table.Columns.Count; i++)
+                    {
+                        object obj = row[row.Table.Columns[i].ColumnName];
+                        if (obj == DBNull.Value)
+                        {
+                            obj = null;
+                        }
+
+                        dictionary.Add(row.Table.Columns[i].ColumnName.ToString(), obj);
+                    }
+
+                    list.Add(dictionary);
                 }
-                list.Add(dic);
             }
+
             return list;
         }
     }

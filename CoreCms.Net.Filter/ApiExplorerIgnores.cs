@@ -90,12 +90,6 @@ namespace CoreCms.Net.Filter
 
             if (action.Controller.ControllerName == ("WeChatAppletsMessage"))
                 action.ApiExplorer.IsVisible = false;
-
-            if (action.Controller.ControllerName == ("yl_orders"))
-                action.ApiExplorer.IsVisible = false;
-
-            if (action.Controller.ControllerName == ("yl_address"))
-                action.ApiExplorer.IsVisible = false;
         }
     }
 }

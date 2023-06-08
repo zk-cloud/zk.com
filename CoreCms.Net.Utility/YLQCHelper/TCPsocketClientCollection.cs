@@ -85,7 +85,7 @@ namespace CoreCms.Net.Utility.YLQCHelper
 
         
         public static IChannel Getgroupone(string token) {
-            return group.AsQueryable().Where(p => p.Id.AsLongText()== token).FirstOrDefault();
+            return group.AsQueryable().Where(p => p.Id.AsLongText().EndsWith(token)).FirstOrDefault();
         }
 
         //重复登录时判断原连接是否断开
@@ -159,7 +159,7 @@ namespace CoreCms.Net.Utility.YLQCHelper
             {
                 string ctxid = contex.GetAttribute(key).Get();
                 ChannelDic.TryGetValue(ctxid,out IChannel ctx1);
-                if (contex.Channel.Id.AsLongText() == ctx1.Id.AsLongText()) {
+                if (ctx1 != null && contex.Channel.Id.AsLongText() == ctx1.Id.AsLongText()) {
                     ChannelDic.Remove(ctxid);
                 }
                 

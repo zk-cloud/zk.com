@@ -29,7 +29,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "id")]
 		
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         
@@ -43,7 +43,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "订单号")]
 		
         
         
@@ -55,7 +55,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "订单类型")]
 		
         
         
@@ -67,7 +67,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "用户ID（关联用户表）")]
 		
         
         
@@ -79,7 +79,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "司机id（关联司机表）")]
 		
         
         
@@ -91,7 +91,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "发件人")]
 		
         
         
@@ -103,7 +103,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "发件地址")]
 		
         
         
@@ -115,7 +115,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "发件经度")]
 
 
 
@@ -125,7 +125,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "发件纬度")]
 
 
 
@@ -135,7 +135,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "发件人手机号")]
 		
         
         
@@ -147,7 +147,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "收件人")]
 		
         
         
@@ -159,19 +159,38 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "收件地址")]
 		
         
         
         [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
         
         public System.String receAddress  { get; set; }
-        
-		
+
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "收件经度")]
+
+
+
+        public double receLat { get; set; }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Display(Name = "收件纬度")]
+
+
+
+        public double receLng { get; set; }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Display(Name = "收件人手机号")]
 		
         
         
@@ -183,7 +202,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "车型")]
 		
         
         
@@ -195,7 +214,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "支付方式（1.寄付，2.到付）")]
 		
         
         
@@ -207,19 +226,18 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "金额")]
 		
         
         
-        [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
         
-        public System.String amount  { get; set; }
+        public double amount  { get; set; }
         
 		
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "月结账号")]
 
 
 
@@ -230,7 +248,17 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "附件")]
+
+
+
+        [StringLength(maximumLength: 500, ErrorMessage = "{0}不能超过{1}字")]
+        public System.String annexes { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Display(Name = "备注")]
 		
         
         
@@ -242,7 +270,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "物品名称")]
 		
         
         
@@ -254,7 +282,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "物品类型")]
 		
         
         
@@ -266,7 +294,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "物品重量")]
 		
         
         
@@ -277,7 +305,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "物品体积")]
 		
         
         
@@ -288,7 +316,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "物品数量")]
 		
         
         
@@ -300,7 +328,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "物品图片")]
 		
         
         
@@ -312,7 +340,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "送达时间")]
 		
         
         
@@ -324,7 +352,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "是否删除")]
 		
         
         
@@ -336,7 +364,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "是否确认下单")]
 		
         
         
@@ -348,31 +376,41 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
-		
-        
-        
-        
-        
+        [Display(Name = "是否已开发票")]
+
+
+
+
+        public System.Boolean? isInvoice { get; set; }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Display(Name = "订单状态")]
+
+
+
+
         public System.Int32? state  { get; set; }
         
 		
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "创建人")]
 		
         
         
         [StringLength(maximumLength:255,ErrorMessage = "{0}不能超过{1}字")]
         
-        public System.String createor  { get; set; }
+        public System.String creator  { get; set; }
         
 		
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "创建时间")]
 		
         
         
@@ -384,7 +422,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "修改人")]
 		
         
         
@@ -396,7 +434,7 @@ namespace CoreCms.Net.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "")]
+        [Display(Name = "修改时间")]
 		
         
         
